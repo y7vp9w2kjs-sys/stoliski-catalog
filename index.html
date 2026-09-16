@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="StoliSki">
+<meta name="theme-color" content="#30b48d">
+<title>StoliSki – קטלוג דירות ואל טורנס</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root{
+    --bg:#f4f6f9; --panel:#fff; --line:#e3e7ee; --text:#1c2430; --muted:#66707f;
+    --brand:#30b48d; --brand-dk:#22936f; --chip:#eef3f8; --chip-on:#dff5ec; --warn:#c7791b;
+    --t-green:#2e9e5b; --t-orange:#e8891d; --t-yellow:#f2cf3a;
+    --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 -apple-system,"Segoe UI",Roboto,Arial,"Noto Sans Hebrew",sans-serif}
+  .ltr{direction:ltr;text-align:left}
+  a{color:var(--brand-dk)}
+  button{font:inherit;cursor:pointer}
+
+  header{position:sticky;top:0;z-index:20;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .bar{display:flex;align-items:center;gap:14px;padding:10px 18px;flex-wrap:wrap}
+  .logo{font-weight:700;font-size:18px;color:var(--brand-dk);white-space:nowrap}
+  .logo small{font-weight:400;color:var(--muted);margin-inline-start:8px}
+  .search{flex:1;min-width:220px;position:relative}
+  .search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fbfcfd}
+  .tabs{display:flex;gap:4px;background:var(--chip);border-radius:8px;padding:3px}
+  .tabs button{border:0;background:transparent;padding:6px 12px;border-radius:6px;color:var(--muted)}
+  .tabs button.on{background:#fff;color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+  .filters{display:flex;gap:10px;padding:8px 18px 12px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line)}
+  .fgroup{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .fgroup label{color:var(--muted);font-size:12px;margin-inline-end:2px}
+  .chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:4px 10px;font-size:12.5px;color:var(--text)}
+  .chip.on{background:var(--chip-on);border-color:var(--brand);color:var(--brand-dk);font-weight:600}
+  select{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;font:inherit}
+  .clear{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:12px}
+
+  main{padding:16px 18px 60px;max-width:1500px;margin:0 auto}
+  .count{color:var(--muted);margin-bottom:10px;font-size:13px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .12s;position:relative}
+  .card:hover{transform:translateY(-2px)}
+  .card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#dde3ea}
+  .card .body{padding:10px 12px 12px}
+  .card .code{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--brand-dk);font-weight:700}
+  .card h3{margin:2px 0 2px;font-size:16px}
+  .card .res{color:var(--muted);font-size:12.5px}
+  .facts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .fact{background:var(--chip);border-radius:6px;padding:3px 7px;font-size:12px;white-space:nowrap}
+  .fact b{font-weight:700}
+  .pf{margin-top:8px;font-size:12.5px;color:var(--muted)}
+  .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:11px;padding:2px 7px;border-radius:999px;background:var(--chip-on);color:var(--brand-dk)}
+  .tag.off{background:#fbecd9;color:var(--warn)}
+  .cmp{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:12px}
+  .cmp.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .card.t-green{border-top:4px solid var(--t-green)} .card.t-orange{border-top:4px solid var(--t-orange)} .card.t-yellow{border-top:4px solid var(--t-yellow)}
+  .tierb{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
+  .tierb.green{background:var(--t-green)} .tierb.orange{background:var(--t-orange)} .tierb.yellow{background:var(--t-yellow);color:#4a3b00}
+  .tierb small{font-weight:500;opacity:.9}
+  .card .tierb{position:absolute;top:12px;right:10px}
+  .chip.tg.on{background:#dff3e6;border-color:var(--t-green);color:#1e7a44}
+  .chip.to.on{background:#fdebd6;border-color:var(--t-orange);color:#a85f0a}
+  .chip.ty.on{background:#fff6cc;border-color:var(--t-yellow);color:#7a6200}
+  .breakdown{display:flex;flex-wrap:wrap;gap:5px}
+  .breakdown span{background:var(--chip);border-radius:6px;padding:3px 8px;font-size:12px}
+  .note-dot{position:absolute;top:12px;left:110px;background:#ffd84d;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:600}
+
+  /* modal */
+  .overlay{position:fixed;inset:0;background:rgba(15,22,32,.6);z-index:50;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:24px 12px}
+  .overlay.open{display:flex}
+  .modal{background:var(--panel);border-radius:14px;width:min(1180px,100%);box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+  .mhead{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .mhead h2{margin:0;font-size:20px}
+  .mhead .code{font-family:ui-monospace,Menlo,monospace;color:var(--brand-dk);font-weight:700;font-size:14px}
+  .mhead .sp{flex:1}
+  .x{border:0;background:var(--chip);border-radius:8px;width:34px;height:34px;font-size:18px}
+  .nav{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px}
+  .mbody{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+  .mbody>div{min-width:0}
+  @media (max-width:860px){.mbody{grid-template-columns:1fr}}
+  .gallery{background:#0f1620;position:relative}
+  .gallery .main{width:100%;aspect-ratio:4/3;object-fit:contain;display:block;background:#0f1620}
+  .gallery .arrow{position:absolute;top:calc(50% - 22px);width:44px;height:44px;border-radius:999px;border:0;background:rgba(255,255,255,.85);font-size:20px}
+  .gallery .prev{right:10px}.gallery .next{left:10px}
+  .gallery .cnt{position:absolute;bottom:10px;left:12px;background:rgba(0,0,0,.55);color:#fff;padding:2px 8px;border-radius:6px;font-size:12px;direction:ltr}
+  .thumbs{display:flex;gap:6px;padding:8px;overflow-x:auto;background:#141c28;direction:ltr}
+  .thumbs img{height:58px;width:78px;object-fit:cover;border-radius:4px;opacity:.6;cursor:pointer;flex:none;border:2px solid transparent}
+  .thumbs img.on{opacity:1;border-color:var(--brand)}
+  .info{padding:16px 18px;max-height:78vh;overflow:auto}
+  .info h4{margin:14px 0 6px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .info h4:first-child{margin-top:0}
+  .kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+  .kv div{background:var(--chip);border-radius:8px;padding:8px 10px}
+  .kv small{display:block;color:var(--muted);font-size:11px}
+  .kv b{font-size:15px}
+  ul.clean{margin:0;padding-inline-start:18px}
+  ul.clean li{margin:2px 0}
+  .amen{display:flex;gap:6px;flex-wrap:wrap}
+  .amen span{background:var(--chip);border-radius:6px;padding:3px 8px;font-size:12px}
+  .amen span.hl{background:var(--chip-on);color:var(--brand-dk);font-weight:600}
+  textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit;resize:vertical}
+  .links a{margin-inline-end:14px;font-size:13px}
+  .hint{color:var(--muted);font-size:12px}
+  pre.summary{white-space:pre-wrap;background:var(--chip);padding:10px;border-radius:8px;font:12.5px/1.45 inherit;margin:0}
+
+  /* compare */
+  .cbar{position:fixed;bottom:0;inset-inline:0;background:#1c2430;color:#fff;padding:10px 18px;display:none;gap:12px;align-items:center;z-index:30}
+  .cbar.on{display:flex}
+  .cbar button{border:0;border-radius:8px;padding:8px 14px;background:var(--brand);color:#fff;font-weight:600}
+  .cbar .ghost{background:transparent;border:1px solid #555;font-weight:400}
+  table.cmpT{width:100%;border-collapse:collapse;font-size:13px}
+  table.cmpT th,table.cmpT td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:start}
+  table.cmpT th{background:var(--chip);width:150px;color:var(--muted);font-weight:600}
+  table.cmpT td img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+  .cmpWrap{padding:16px;max-height:85vh;overflow:auto}
+
+  /* map */
+  #map{height:calc(100vh - 150px);border-radius:12px;border:1px solid var(--line);display:none;overflow:hidden}
+  .maplist{display:none;margin-top:12px;font-size:13px;color:var(--muted)}
+  .pin{cursor:pointer;display:flex;flex-direction:column;align-items:center}
+  .pin .lbl{background:#fff;border:2px solid var(--brand);color:var(--text);border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .pin .lbl small{color:var(--brand-dk);font-weight:600;margin-inline-start:4px}
+  .pin .stem{width:2px;height:22px;background:var(--brand)}
+  .pin .dot{width:10px;height:10px;border-radius:999px;background:var(--brand);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);margin-top:-1px}
+  .pin:hover .lbl{background:var(--chip-on)}
+  .maplibregl-popup{max-width:340px!important;direction:rtl;font:13px/1.45 -apple-system,"Segoe UI",Roboto,Arial,"Noto Sans Hebrew",sans-serif}
+  .maplibregl-popup-content{padding:0;border-radius:12px;overflow:auto;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+  .maplibregl-popup-close-button{font-size:20px;padding:2px 8px;left:0;right:auto;z-index:2;color:#fff;text-shadow:0 1px 3px #000}
+  .pp-head{background:var(--brand);color:#fff;padding:10px 14px;font-weight:700;font-size:14px}
+  .pp-head small{display:block;font-weight:400;opacity:.9;font-size:11.5px}
+  .pp-units{padding:6px 8px;display:flex;flex-direction:column;gap:2px}
+  .pp-units button{border:0;background:transparent;text-align:start;padding:7px 8px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .pp-units button:hover,.pp-units button.on{background:var(--chip-on)}
+  .pp-units button b{font-size:13.5px}
+  .pp-units button span{color:var(--muted);font-size:12px;white-space:nowrap}
+  .pp-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+  .pp-card .in{padding:10px 12px 12px}
+  .pp-card .facts{margin-top:0}
+  .pp-card .beds{margin-top:8px;font-size:12px;color:var(--muted)}
+  .pp-card .pf{margin-top:6px}
+  .pp-card .go{margin-top:10px;display:flex;gap:8px}
+  .pp-card .go button{flex:1;border:0;border-radius:8px;padding:8px;background:var(--brand);color:#fff;font-weight:600}
+  .pp-card .go button.ghost{background:var(--chip);color:var(--text);font-weight:400}
+  .mapctl{position:absolute;top:10px;right:10px;z-index:5;display:flex;gap:6px}
+  .mapctl button{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12.5px;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .mapctl button.on{background:var(--chip-on);border-color:var(--brand);color:var(--brand-dk);font-weight:600}
+  #mapwrap{position:relative;display:none}
+
+  /* phone */
+  @media (max-width:640px){
+    .bar{padding:8px 10px;gap:8px}
+    .logo small{display:none}
+    .search{order:3;flex-basis:100%}
+    .filters{padding:6px 10px 8px;gap:6px}
+    .fgroup label{flex-basis:100%;margin:0}
+    main{padding:10px 10px 70px}
+    .grid{grid-template-columns:1fr;gap:12px}
+    .overlay{padding:0}
+    .modal{border-radius:0;min-height:100vh}
+    .mhead{padding:10px 12px;gap:8px;flex-wrap:wrap}
+    .mhead h2{font-size:17px}
+    .info{max-height:none;padding:12px}
+    .gallery .arrow{width:38px;height:38px}
+    #map{height:calc(100vh - 230px)}
+    .maplibregl-popup{max-width:92vw!important}
+    .cmpWrap{padding:8px}
+    table.cmpT th{width:90px}
+  }
+
+  /* table view */
+  table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13px;display:none}
+  table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;white-space:nowrap}
+  table.list th{background:var(--chip);color:var(--muted);font-weight:600;cursor:pointer;user-select:none}
+  table.list tr:hover td{background:#f7fafc;cursor:pointer}
+  table.list td.code{font-family:ui-monospace,Menlo,monospace;color:var(--brand-dk);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="logo">StoliSki <small>קטלוג דירות · ואל טורנס</small></div>
+    <div class="search"><input id="q" type="search" placeholder="חיפוש: שם, קוד, רזידנס, רחוב…"></div>
+    <div class="tabs">
+      <button data-view="grid" class="on">כרטיסים</button>
+      <button data-view="table">טבלה</button>
+      <button data-view="map">מפה</button>
+    </div>
+    <select id="sort">
+      <option value="score">מיון: דירוג ↓</option>
+      <option value="residence">מיון: רזידנס</option>
+      <option value="name">מיון: שם</option>
+      <option value="guests">מיון: אורחים ↓</option>
+      <option value="beds">מיון: מיטות ↓</option>
+      <option value="size">מיון: גודל ↓</option>
+    </select>
+  </div>
+  <div class="filters">
+    <div class="fgroup"><label>דירוג</label>
+      <button class="chip tg" data-tier="green">🟢 ירוק</button><button class="chip to" data-tier="orange">🟠 כתום</button><button class="chip ty" data-tier="yellow">🟡 צהוב</button>
+    </div>
+    <div class="fgroup"><label>רזידנס</label><span id="fRes"></span></div>
+    <div class="fgroup"><label>אורחים</label>
+      <select id="fGuests"><option value="0">הכל</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option><option value="6">6+</option><option value="7">7</option></select>
+    </div>
+    <div class="fgroup"><label>מיטות</label>
+      <select id="fBeds"><option value="0">הכל</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option></select>
+    </div>
+    <div class="fgroup"><label>מאפיינים</label><span id="fAmen"></span></div>
+    <div class="fgroup"><label>אתר</label>
+      <select id="fPub"><option value="">הכל</option><option value="1">מפורסם באתר</option><option value="0">לא מפורסם</option></select>
+    </div>
+    <button class="clear" id="clear">נקה סינון</button>
+  </div>
+</header>
+
+<main>
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <table class="list" id="list"><thead><tr>
+    <th data-k="score">דירוג</th><th data-k="code">קוד</th><th data-k="name">שם</th><th data-k="residence">רזידנס</th><th data-k="street">רחוב</th>
+    <th data-k="maxGuests">אורחים</th><th data-k="beds">מיטות</th><th data-k="bathrooms">מקלחת</th><th data-k="sizeM2">מ״ר</th>
+    <th data-k="condition">מצב</th><th>מיטות (פירוט)</th><th>מתאים ל</th><th>צ׳ק-אין</th><th>מחיר</th><th>אתר</th>
+  </tr></thead><tbody></tbody></table>
+  <div id="mapwrap">
+    <div class="mapctl">
+      <button id="m3d" class="on">תלת-מימד</button>
+      <button id="m2d">מלמעלה</button>
+      <button id="mfit">מרכז את הדירות</button>
+    </div>
+    <div id="map"></div>
+  </div>
+  <div class="maplist" id="maplist"></div>
+</main>
+
+<div class="cbar" id="cbar">
+  <span id="cbarTxt"></span>
+  <button id="cmpGo">השווה</button>
+  <button class="ghost" id="cmpClear">נקה</button>
+</div>
+
+<div class="overlay" id="ov"><div class="modal" id="modal"></div></div>
+<div class="overlay" id="ovC"><div class="modal"><div class="mhead"><h2>השוואה</h2><span class="sp"></span><button class="x" id="xC">✕</button></div><div class="cmpWrap" id="cmpBody"></div></div></div>
+
+<script src="data/apartments.js?v=4"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const A = window.APARTMENTS || [];
+const LABELS = {
+  HAS_SKI_IN_SKI_OUT:'Ski-in/out', HAS_BALCONY_TERRASSE:'מרפסת', HAS_MOUNTAIN_VIEW:'נוף להרים', HAS_MOUNTAIN:'הרים',
+  HAS_KITCHEN:'מטבח', HAS_KITCHENETTE:'מטבחון', HAS_FRIDGE:'מקרר', HAS_MICROWAVE_OVEN:'מיקרוגל', HAS_OVEN:'תנור',
+  HAS_DISHWASHER:'מדיח', HAS_DINING_TABLE:'שולחן אוכל', HAS_COFFEE_MAKER:'מכונת קפה', HAS_WATER_KETTLE:'קומקום',
+  HAS_COOKING_BASICS:'ציוד בישול', HAS_TV:'טלוויזיה', HAS_HEATING:'חימום', HAS_HOT_WATER:'מים חמים',
+  HAS_AIR_CONDITIONING:'מיזוג', HAS_WASHER:'מכונת כביסה', HAS_ELEVATOR:'מעלית'
+};
+const FILTER_AMEN = ['HAS_SKI_IN_SKI_OUT','HAS_BALCONY_TERRASSE','HAS_DISHWASHER','HAS_TV','HAS_AIR_CONDITIONING','HAS_WASHER','HAS_ELEVATOR'];
+const RES = [...new Set(A.map(a=>a.residence))].sort();
+
+const state = { q:'', tier:new Set(), res:new Set(), guests:0, beds:0, amen:new Set(), pub:'', sort:'score', view:'grid', cmp:[], tsort:{k:'code',d:1} };
+const $ = s=>document.querySelector(s);
+
+/* ---------- notes (localStorage) ---------- */
+const NK='stoliski_notes_v1';
+let notes = {}; try{ notes = JSON.parse(localStorage.getItem(NK)||'{}'); }catch(e){}
+const saveNotes = ()=>{ try{ localStorage.setItem(NK, JSON.stringify(notes)); }catch(e){} };
+
+/* ---------- filters UI ---------- */
+$('#fRes').innerHTML = RES.map(r=>`<button class="chip" data-res="${r}">${r}</button>`).join('');
+$('#fAmen').innerHTML = FILTER_AMEN.map(k=>`<button class="chip" data-amen="${k}">${LABELS[k]}</button>`).join('');
+document.querySelectorAll('[data-tier]').forEach(b=>b.onclick=()=>{ toggle(state.tier,b.dataset.tier); b.classList.toggle('on'); render(); });
+document.querySelectorAll('[data-res]').forEach(b=>b.onclick=()=>{ toggle(state.res,b.dataset.res); b.classList.toggle('on'); render(); });
+document.querySelectorAll('[data-amen]').forEach(b=>b.onclick=()=>{ toggle(state.amen,b.dataset.amen); b.classList.toggle('on'); render(); });
+function toggle(set,v){ set.has(v)?set.delete(v):set.add(v); }
+$('#q').oninput = e=>{ state.q=e.target.value.trim().toLowerCase(); render(); };
+$('#fGuests').onchange = e=>{ state.guests=+e.target.value; render(); };
+$('#fBeds').onchange = e=>{ state.beds=+e.target.value; render(); };
+$('#fPub').onchange = e=>{ state.pub=e.target.value; render(); };
+$('#sort').onchange = e=>{ state.sort=e.target.value; render(); };
+$('#clear').onclick = ()=>{ state.q='';state.tier.clear();state.res.clear();state.guests=0;state.beds=0;state.amen.clear();state.pub='';
+  $('#q').value='';$('#fGuests').value='0';$('#fBeds').value='0';$('#fPub').value='';
+  document.querySelectorAll('.chip.on').forEach(c=>c.classList.remove('on')); render(); };
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  state.view=b.dataset.view; render();
+});
+
+/* ---------- filtering / sorting ---------- */
+function filtered(){
+  let r = A.filter(a=>{
+    if(state.tier.size && !state.tier.has(a.tier)) return false;
+    if(state.res.size && !state.res.has(a.residence)) return false;
+    if(state.guests && (a.maxGuests||0) < state.guests) return false;
+    if(state.beds && (a.beds||0) < state.beds) return false;
+    if(state.pub!=='' && String(a.publicListed?1:0)!==state.pub) return false;
+    for(const k of state.amen) if(!a.amenities.includes(k)) return false;
+    if(state.q){
+      const hay = [a.name,a.code,a.residence,a.street,a.publicName,a.perfectFor,a.perfectForHe,...a.bedSpec,...a.bedSpecHe].join(' ').toLowerCase();
+      if(!hay.includes(state.q)) return false;
+    }
+    return true;
+  });
+  const s = state.sort;
+  const cmpF = {
+    score:(x,y)=>(y.score-x.score)||x.name.localeCompare(y.name),
+    residence:(x,y)=>x.residence.localeCompare(y.residence)||x.name.localeCompare(y.name),
+    name:(x,y)=>x.name.localeCompare(y.name),
+    guests:(x,y)=>(y.maxGuests-x.maxGuests)||x.name.localeCompare(y.name),
+    beds:(x,y)=>(y.beds-x.beds)||x.name.localeCompare(y.name),
+    size:(x,y)=>(y.sizeM2-x.sizeM2)||x.name.localeCompare(y.name),
+  }[s];
+  return r.sort(cmpF);
+}
+
+const TIER = {green:'ירוק', orange:'כתום', yellow:'צהוב'};
+const tierBadge = a=>`<span class="tierb ${a.tier}">${TIER[a.tier]} <small>${a.score}</small></span>`;
+
+/* ---------- render ---------- */
+function render(){
+  const list = filtered();
+  $('#count').textContent = `${list.length} מתוך ${A.length} דירות`;
+  $('#grid').style.display = state.view==='grid'?'grid':'none';
+  $('#list').style.display = state.view==='table'?'table':'none';
+  $('#mapwrap').style.display = state.view==='map'?'block':'none';
+  $('#map').style.display = state.view==='map'?'block':'none';
+  $('#maplist').style.display = state.view==='map'?'block':'none';
+  if(state.view==='grid') renderGrid(list);
+  if(state.view==='table') renderTable(list);
+  if(state.view==='map') renderMap(list);
+  renderCbar();
+}
+
+function renderGrid(list){
+  $('#grid').innerHTML = list.map(a=>`
+    <div class="card t-${a.tier}" data-id="${a.id}">
+      <img src="${a.photos[0]?a.photos[0].file:''}" loading="lazy" alt="">
+      ${tierBadge(a)}
+      <button class="cmp ${state.cmp.includes(a.id)?'on':''}" data-cmp="${a.id}">${state.cmp.includes(a.id)?'✓ בהשוואה':'+ השווה'}</button>
+      ${notes[a.id]?'<span class="note-dot">הערה</span>':''}
+      <div class="body">
+        <div class="code ltr">${a.code}</div>
+        <h3>${a.name}</h3>
+        <div class="res">${a.residence} · ${a.street||''}</div>
+        <div class="facts">
+          <span class="fact">👥 <b>${a.maxGuests}</b> אורחים</span>
+          <span class="fact">🛏 <b>${a.beds}</b> מיטות</span>
+          <span class="fact">🚿 <b>${a.bathrooms}</b></span>
+          <span class="fact">📐 <b>${a.sizeM2}</b> מ״ר</span>
+          <span class="fact">📷 ${a.photos.length}</span>
+          <span class="fact">🏠 מצב <b>${a.condition??'-'}</b>/5</span>
+        </div>
+        <div class="pf">${a.perfectForHe?'מתאים ל: '+a.perfectForHe:''}</div>
+        <div class="tags">
+          ${a.highlights.map(h=>`<span class="tag">${LABELS[h]}</span>`).join('')}
+          ${a.publicListed?'':'<span class="tag off">לא באתר</span>'}
+        </div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.card').forEach(c=>c.onclick=e=>{ if(e.target.dataset.cmp) return; openDetail(c.dataset.id); });
+  document.querySelectorAll('[data-cmp]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); toggleCmp(b.dataset.cmp); });
+}
+
+function renderTable(list){
+  const {k,d} = state.tsort;
+  const rows = [...list].sort((x,y)=>{ const a=x[k]??-1,b=y[k]??-1; return (typeof a==='number'? a-b : String(a).localeCompare(String(b)))*d; });
+  $('#list tbody').innerHTML = rows.map(a=>`<tr data-id="${a.id}">
+    <td>${tierBadge(a)}</td><td class="code ltr">${a.code}</td><td>${a.name}</td><td>${a.residence}</td><td>${a.street||''}</td>
+    <td>${a.maxGuests}</td><td>${a.beds}</td><td>${a.bathrooms}</td><td>${a.sizeM2}</td><td>${a.condition??'-'}</td>
+    <td style="white-space:normal;min-width:180px">${a.bedSpecHe.join(' · ')}</td>
+    <td style="white-space:normal">${a.perfectForHe}</td><td>${a.checkInMethodHe||''}</td><td>${a.price||'—'}</td>
+    <td>${a.publicListed?'✓':'✗'}</td></tr>`).join('');
+  document.querySelectorAll('#list tbody tr').forEach(r=>r.onclick=()=>openDetail(r.dataset.id));
+  document.querySelectorAll('#list th[data-k]').forEach(th=>th.onclick=()=>{
+    state.tsort = th.dataset.k===state.tsort.k ? {k:th.dataset.k,d:-state.tsort.d} : {k:th.dataset.k,d:1}; render();
+  });
+}
+
+/* ---------- 3D map (MapLibre + OpenFreeMap + AWS terrain) ---------- */
+let map, markers=[], mapReady=false;
+const VT_CENTER=[6.5795,45.2975];
+function initMap(){
+  map = new maplibregl.Map({
+    container:'map', style:'https://tiles.openfreemap.org/styles/liberty',
+    center:VT_CENTER, zoom:15.6, pitch:62, bearing:-25, maxPitch:80, antialias:true, attributionControl:{compact:true}
+  });
+  map.addControl(new maplibregl.NavigationControl({visualizePitch:true}),'top-left');
+  // 'load' waits for every tile/glyph on a slow tile server; markers need no style at all,
+  // and terrain only needs the style, so hook the earlier 'style.load' instead.
+  map.on('load',()=>{
+    if(mapReady) return; mapReady=true;
+    try{
+      map.addSource('dem',{type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],encoding:'terrarium',tileSize:256,maxzoom:14});
+      map.addLayer({id:'hills',type:'hillshade',source:'dem',paint:{'hillshade-exaggeration':0.35,'hillshade-shadow-color':'#3a4657','hillshade-highlight-color':'#ffffff'}}, map.getLayer('building')?'building':undefined);
+      map.setTerrain({source:'dem',exaggeration:1.25});
+    }catch(e){ console.warn('terrain unavailable', e); }
+    try{ map.setSky({'sky-color':'#9ec3ea','horizon-color':'#e8eef5','fog-color':'#f4f6f9','fog-ground-blend':0.6,'sky-horizon-blend':0.6,'horizon-fog-blend':0.75}); }catch(e){}
+    try{ map.setPaintProperty('building-3d','fill-extrusion-color','#c9d2dd'); map.setPaintProperty('building-3d','fill-extrusion-opacity',0.85); }catch(e){}
+    setTimeout(()=>fitMarkers(true),300);  // terrain shifts screen positions; re-frame
+  });
+  $('#m3d').onclick=()=>{ map.easeTo({pitch:62,bearing:-25,duration:800}); setMode('3d'); };
+  $('#m2d').onclick=()=>{ map.easeTo({pitch:0,bearing:0,duration:800}); setMode('2d'); };
+  $('#mfit').onclick=()=>fitMarkers(true);
+  function setMode(m){ $('#m3d').classList.toggle('on',m==='3d'); $('#m2d').classList.toggle('on',m==='2d'); }
+}
+function groupByBuilding(list){
+  const groups={};
+  list.filter(a=>a.lat&&a.lng).forEach(a=>{ const k=a.lat.toFixed(4)+','+a.lng.toFixed(4); (groups[k]=groups[k]||[]).push(a); });
+  return Object.values(groups);
+}
+function fitMarkers(animate){
+  const pts=markers.map(m=>m.getLngLat());
+  if(!pts.length) return;
+  const pitch=map.getPitch(), bearing=map.getBearing();
+  if(pts.length===1){ map.easeTo({center:pts[0],zoom:17,pitch,bearing,duration:animate?800:0}); return; }
+  const b=new maplibregl.LngLatBounds(pts[0],pts[0]); pts.forEach(p=>b.extend(p));
+  // fitBounds is unreliable when pitched: compute the flat camera, then tilt it and back off a little.
+  const cam=map.cameraForBounds(b,{padding:{top:80,bottom:40,left:60,right:60},maxZoom:16.8,bearing:0});
+  if(!cam) return;
+  map.easeTo({center:cam.center,zoom:cam.zoom-(pitch>30?0.35:0),pitch,bearing,duration:animate?800:0});
+}
+// Put the marker near the bottom of the map and cap the popup so it always fits above it.
+function framePopup(popup,lngLat){
+  const h=map.getContainer().clientHeight;
+  const c=popup.getElement()?.querySelector('.maplibregl-popup-content'); if(c) c.style.maxHeight=(h-130)+'px';
+  map.easeTo({center:lngLat,offset:[0,h/2-80],duration:450});
+}
+function placeMarkers(list){
+  markers.forEach(m=>m.remove()); markers=[];
+  groupByBuilding(list).forEach(g=>{
+    const a=g[0];
+    const el=document.createElement('div'); el.className='pin';
+    el.innerHTML=`<div class="lbl">${a.residence}<small>${g.length}</small></div><div class="stem"></div><div class="dot"></div>`;
+    const popup=new maplibregl.Popup({anchor:'bottom',offset:[0,-6],closeButton:true,maxWidth:'340px'});
+    // pan so the marker sits low in the view and the popup above it has room
+    popup.on('open',()=>framePopup(popup,[a.lng,a.lat]));
+    popup.setDOMContent(buildPopup(g,popup));
+    const m=new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat([a.lng,a.lat]).setPopup(popup).addTo(map);
+    markers.push(m);
+  });
+  $('#maplist').innerHTML = 'לחיצה על סמן פותחת את הדירות בבניין. גרירה עם לחצן ימני / שני אצבעות מסובבת ומטה את המפה. · ' +
+    groupByBuilding(list).map(g=>`<b>${g[0].residence}</b> (${g.length})`).join(' · ');
+  fitMarkers(false);
+}
+function buildPopup(g,popup){
+  const root=document.createElement('div');
+  const draw=(sel)=>{
+    const a=sel;
+    root.innerHTML=`
+      <div class="pp-head">${g[0].residence}<small>${g[0].street||g[0].address||''} · ${g.length} דירות</small></div>
+      ${g.length>1?`<div class="pp-units">${g.map(x=>`<button data-u="${x.id}" class="${a&&a.id===x.id?'on':''}"><b>${x.name} ${tierBadge(x)}</b><span>${x.maxGuests} אורחים · ${x.beds} מיטות · ${x.sizeM2} מ״ר</span></button>`).join('')}</div>`:''}
+      ${a?`<div class="pp-card">
+        <img src="${a.photos[0]?a.photos[0].file:''}" alt="">
+        <div class="in">
+          <div class="code ltr" style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--brand-dk);font-weight:700">${a.code}</div>
+          <div style="font-weight:700;font-size:15px;margin:2px 0 6px;display:flex;justify-content:space-between;align-items:center">${a.name} ${tierBadge(a)}</div>
+          <div class="facts">
+            <span class="fact">👥 <b>${a.maxGuests}</b></span><span class="fact">🛏 <b>${a.beds}</b></span>
+            <span class="fact">🚿 <b>${a.bathrooms}</b></span><span class="fact">📐 <b>${a.sizeM2}</b> מ״ר</span>
+          </div>
+          <div class="beds">${a.bedSpecHe.join(' · ')}</div>
+          <div class="pf">${a.perfectForHe?'מתאים ל: '+a.perfectForHe:''}</div>
+          <div class="tags">${a.highlights.map(h=>`<span class="tag">${LABELS[h]}</span>`).join('')}${a.publicListed?'':'<span class="tag off">לא באתר</span>'}</div>
+          <div class="go"><button data-open="${a.id}">דף מלא + גלריה</button>${g.length>1?'<button class="ghost" data-back="1">חזרה לרשימה</button>':''}</div>
+        </div></div>`:''}`;
+    root.querySelectorAll('[data-u]').forEach(b=>b.onclick=()=>draw(g.find(x=>x.id===b.dataset.u)));
+    if(popup.isOpen()) framePopup(popup,[g[0].lng,g[0].lat]);
+    root.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{ popup.remove(); openDetail(b.dataset.open); });
+    root.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>draw(null));
+  };
+  draw(g.length===1?g[0]:null);
+  return root;
+}
+function renderMap(list){
+  if(typeof maplibregl==='undefined'){ $('#map').innerHTML='<p style="padding:20px">המפה דורשת חיבור לאינטרנט.</p>'; return; }
+  if(!map) initMap();
+  setTimeout(()=>map.resize(),50);
+  placeMarkers(list);
+}
+
+/* ---------- detail modal ---------- */
+let cur=null, idx=0, curList=[];
+function openDetail(id){
+  curList = filtered().map(a=>a.id); if(!curList.includes(id)) curList=[id];
+  cur = A.find(a=>a.id===id); idx=0; drawDetail(); $('#ov').classList.add('open');
+}
+function drawDetail(){
+  const a=cur, ph=a.photos;
+  const pos = curList.indexOf(a.id);
+  $('#modal').innerHTML = `
+    <div class="mhead">
+      <button class="nav" id="pv" ${pos<=0?'disabled':''}>→ קודם</button>
+      <span class="code ltr">${a.code}</span><h2>${a.name}</h2>
+      <span style="color:var(--muted)">${a.residence}</span>
+      ${tierBadge(a)}
+      <span class="sp"></span>
+      <button class="nav" id="nx" ${pos>=curList.length-1?'disabled':''}>הבא ←</button>
+      <button class="x" id="x">✕</button>
+    </div>
+    <div class="mbody">
+      <div>
+        <div class="gallery">
+          <img class="main" id="gmain" src="${ph[idx]?ph[idx].file:''}" alt="">
+          <button class="arrow prev" id="gprev">‹</button><button class="arrow next" id="gnext">›</button>
+          <span class="cnt" id="gcnt">${idx+1} / ${ph.length}</span>
+        </div>
+        <div class="thumbs" id="thumbs">${ph.map((p,i)=>`<img src="${p.file}" data-i="${i}" class="${i===idx?'on':''}" loading="lazy">`).join('')}</div>
+      </div>
+      <div class="info">
+        <h4>דירוג: ${TIER[a.tier]} · ${a.score} נקודות</h4>
+        <div class="breakdown">${a.scoreParts.map(p=>`<span>${p}</span>`).join('')}</div>
+        ${a.conditionNote?`<div class="hint" style="margin-top:6px">מצב הדירה (${a.condition}/5): ${a.conditionNote}</div>`:''}
+        <h4>מחיר</h4><div>${a.price||'<span class="hint">לא הוזן — data/manual.json</span>'}</div>
+        <h4>נתונים עיקריים</h4>
+        <div class="kv">
+          <div><small>אורחים (מקס׳)</small><b>${a.maxGuests}</b></div>
+          <div><small>מיטות</small><b>${a.beds}</b></div>
+          <div><small>חדרי שינה</small><b>${a.bedrooms}</b></div>
+          <div><small>מקלחות</small><b>${a.bathrooms}</b></div>
+          <div><small>גודל</small><b>${a.sizeM2} מ״ר</b></div>
+          <div><small>מינימום לילות</small><b>${a.minStay??'-'}</b></div>
+          <div><small>צ׳ק-אין / אאוט</small><b>${a.checkInFrom??'-'}:00 / ${a.checkOutBy??'-'}:00</b></div>
+          <div><small>שיטת כניסה</small><b style="font-size:13px">${a.checkInMethodHe||'-'}</b></div>
+        </div>
+        <h4>מתאים ל</h4><div>${a.perfectForHe||'-'}</div>
+        <h4>סידור מיטות</h4><ul class="clean">${a.bedSpecHe.map(b=>`<li>${b}</li>`).join('')||'<li>-</li>'}</ul>
+        <h4>מה יש בדירה</h4><ul class="clean">${a.featuresHe.map(f=>`<li>${f}</li>`).join('')}</ul>
+        ${a.extrasHe.length?`<div class="hint" style="margin-top:6px">${a.extrasHe.join(' · ')}</div>`:''}
+        <h4>אמניטיז (${a.amenities.length})</h4>
+        <div class="amen">${a.amenities.map(k=>`<span class="${a.highlights.includes(k)?'hl':''}">${LABELS[k]||k}</span>`).join('')}</div>
+        <h4>כתובת</h4>
+        <div class="ltr">${a.address||''}</div>
+        <div class="links" style="margin-top:6px">
+          <a target="_blank" href="https://www.google.com/maps?q=${a.lat},${a.lng}">Google Maps</a>
+          ${a.publicListed?`<a target="_blank" href="${a.webLink}">דף באתר StoliSki</a>`:'<span class="hint">לא מפורסם באתר הציבורי</span>'}
+          <a target="_blank" href="${a.adminLink}">Hostfully (ניהול)</a>
+        </div>
+        <h4>ההערות שלי <span class="hint">(נשמר בדפדפן הזה)</span></h4>
+        <textarea id="note" placeholder="טיפים למכירה, נקודות חוזק/חולשה, דברים לזכור…">${notes[a.id]||''}</textarea>
+        <h4>תיאור מלא</h4>
+        <pre class="summary">${a.descriptionHe}</pre>
+        <details style="margin-top:8px"><summary class="hint" style="cursor:pointer">הטקסט המקורי באנגלית (כפי שמופיע באתר)</summary><pre class="summary ltr" style="margin-top:6px">${a.summary}</pre></details>
+      </div>
+    </div>`;
+  $('#x').onclick=closeDetail;
+  $('#pv').onclick=()=>{ if(pos>0){ cur=A.find(x=>x.id===curList[pos-1]); idx=0; drawDetail(); } };
+  $('#nx').onclick=()=>{ if(pos<curList.length-1){ cur=A.find(x=>x.id===curList[pos+1]); idx=0; drawDetail(); } };
+  $('#gprev').onclick=()=>setIdx(idx-1); $('#gnext').onclick=()=>setIdx(idx+1);
+  document.querySelectorAll('#thumbs img').forEach(t=>t.onclick=()=>setIdx(+t.dataset.i));
+  $('#gmain').onclick=()=>setIdx(idx+1);
+  $('#note').oninput=e=>{ const v=e.target.value; if(v.trim()) notes[a.id]=v; else delete notes[a.id]; saveNotes(); };
+}
+function setIdx(i){
+  const n=cur.photos.length; if(!n) return; idx=(i+n)%n;
+  $('#gmain').src=cur.photos[idx].file; $('#gcnt').textContent=`${idx+1} / ${n}`;
+  document.querySelectorAll('#thumbs img').forEach(t=>t.classList.toggle('on',+t.dataset.i===idx));
+  const on=document.querySelector('#thumbs img.on'); if(on) on.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+}
+function closeDetail(){ $('#ov').classList.remove('open'); if(state.view==='grid') renderGrid(filtered()); }
+$('#ov').onclick=e=>{ if(e.target.id==='ov') closeDetail(); };
+document.addEventListener('keydown',e=>{
+  if($('#ovC').classList.contains('open')){ if(e.key==='Escape') $('#ovC').classList.remove('open'); return; }
+  if(!$('#ov').classList.contains('open')) return;
+  if(e.key==='Escape') closeDetail();
+  if(e.key==='ArrowLeft') setIdx(idx+1);   // RTL: left = forward
+  if(e.key==='ArrowRight') setIdx(idx-1);
+});
+
+/* ---------- compare ---------- */
+function toggleCmp(id){
+  const i=state.cmp.indexOf(id);
+  if(i>=0) state.cmp.splice(i,1); else { if(state.cmp.length>=4){ alert('אפשר להשוות עד 4 דירות'); return; } state.cmp.push(id); }
+  render();
+}
+function renderCbar(){
+  $('#cbar').classList.toggle('on',state.cmp.length>0);
+  $('#cbarTxt').textContent = 'להשוואה: ' + state.cmp.map(id=>A.find(a=>a.id===id).name).join(' · ');
+}
+$('#cmpClear').onclick=()=>{ state.cmp=[]; render(); };
+$('#xC').onclick=()=>$('#ovC').classList.remove('open');
+$('#ovC').onclick=e=>{ if(e.target.id==='ovC') $('#ovC').classList.remove('open'); };
+$('#cmpGo').onclick=()=>{
+  const L_=state.cmp.map(id=>A.find(a=>a.id===id));
+  const row=(label,f)=>`<tr><th>${label}</th>${L_.map(a=>`<td>${f(a)}</td>`).join('')}</tr>`;
+  $('#cmpBody').innerHTML=`<table class="cmpT"><tbody>
+    ${row('',a=>`<img src="${a.photos[0]?a.photos[0].file:''}">`)}
+    ${row('דירה',a=>`<b>${a.name}</b><br><span class="ltr">${a.code}</span>`)}
+    ${row('דירוג',a=>tierBadge(a)+'<br><span class="hint">מצב '+(a.condition??'-')+'/5</span>')}
+    ${row('מחיר',a=>a.price||'—')}
+    ${row('רזידנס',a=>a.residence+'<br><span class="hint">'+(a.street||'')+'</span>')}
+    ${row('אורחים',a=>a.maxGuests)}
+    ${row('מיטות',a=>a.beds)}
+    ${row('מקלחות',a=>a.bathrooms)}
+    ${row('גודל',a=>a.sizeM2+' מ״ר')}
+    ${row('מתאים ל',a=>a.perfectForHe)}
+    ${row('סידור מיטות',a=>a.bedSpecHe.join('<br>'))}
+    ${row('דגשים',a=>a.highlights.map(h=>LABELS[h]).join(', '))}
+    ${row('אמניטיז',a=>a.amenities.map(k=>LABELS[k]||k).join(', '))}
+    ${row('כניסה',a=>a.checkInMethodHe||'-')}
+    ${row('באתר',a=>a.publicListed?'✓':'✗')}
+    ${row('ההערות שלי',a=>notes[a.id]||'')}
+  </tbody></table>`;
+  $('#ovC').classList.add('open');
+};
+
+render();
+</script>
+</body>
+</html>

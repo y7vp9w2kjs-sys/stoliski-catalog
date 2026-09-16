@@ -1,0 +1,4 @@
+# Raw Hostfully export contains key-box codes and internal fields – never publish
+build/raw/
+.DS_Store
+__pycache__/
