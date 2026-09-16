@@ -154,6 +154,10 @@
 
   /* phone */
   @media (max-width:640px){
+    #ftog{display:inline-block!important}
+    .filters{display:none}
+    .filters.open{display:flex}
+    #ftog.on{background:var(--chip-on);border-color:var(--brand);color:var(--brand-dk)}
     .bar{padding:8px 10px;gap:8px}
     .logo small{display:none}
     .search{order:3;flex-basis:100%}
@@ -191,6 +195,7 @@
       <button data-view="table">טבלה</button>
       <button data-view="map">מפה</button>
     </div>
+    <button id="ftog" class="chip" style="display:none">סינון ▾</button>
     <select id="sort">
       <option value="score">מיון: דירוג ↓</option>
       <option value="residence">מיון: רזידנס</option>
@@ -276,6 +281,7 @@ document.querySelectorAll('[data-tier]').forEach(b=>b.onclick=()=>{ toggle(state
 document.querySelectorAll('[data-res]').forEach(b=>b.onclick=()=>{ toggle(state.res,b.dataset.res); b.classList.toggle('on'); render(); });
 document.querySelectorAll('[data-amen]').forEach(b=>b.onclick=()=>{ toggle(state.amen,b.dataset.amen); b.classList.toggle('on'); render(); });
 function toggle(set,v){ set.has(v)?set.delete(v):set.add(v); }
+$('#ftog').onclick=()=>{ const f=document.querySelector('.filters'); f.classList.toggle('open'); $('#ftog').classList.toggle('on',f.classList.contains('open')); };
 $('#q').oninput = e=>{ state.q=e.target.value.trim().toLowerCase(); render(); };
 $('#fGuests').onchange = e=>{ state.guests=+e.target.value; render(); };
 $('#fBeds').onchange = e=>{ state.beds=+e.target.value; render(); };
