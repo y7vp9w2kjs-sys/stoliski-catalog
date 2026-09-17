@@ -69,6 +69,13 @@
   .chip.ty.on{background:#fff6cc;border-color:var(--t-yellow);color:#7a6200}
   .breakdown{display:flex;flex-wrap:wrap;gap:5px}
   .breakdown span{background:var(--chip);border-radius:6px;padding:3px 8px;font-size:12px}
+  .share{background:#f0fbf6;border:1px solid #bfe8d5;border-radius:10px;padding:10px 12px;margin-top:4px}
+  .share .url{font-size:12px;color:var(--muted);direction:ltr;text-align:left;word-break:break-all;margin-bottom:8px}
+  .share .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .share button,.share a{border:0;border-radius:8px;padding:8px 12px;font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .share .wa{background:#25d366;color:#fff}
+  .share .cp{background:var(--brand);color:#fff}
+  .share .op{background:#fff;color:var(--text);border:1px solid var(--line)}
   .note-dot{position:absolute;top:12px;left:110px;background:#ffd84d;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:600}
 
   /* modal */
@@ -256,6 +263,8 @@
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
 const A = window.APARTMENTS || [];
+const SITE_URL = 'https://y7vp9w2kjs-sys.github.io/stoliski-catalog/';
+const galleryLink = a => SITE_URL + 'gallery.html?a=' + a.id;
 const LABELS = {
   HAS_SKI_IN_SKI_OUT:'Ski-in/out', HAS_BALCONY_TERRASSE:'מרפסת', HAS_MOUNTAIN_VIEW:'נוף להרים', HAS_MOUNTAIN:'הרים',
   HAS_KITCHEN:'מטבח', HAS_KITCHENETTE:'מטבחון', HAS_FRIDGE:'מקרר', HAS_MICROWAVE_OVEN:'מיקרוגל', HAS_OVEN:'תנור',
@@ -520,6 +529,16 @@ function drawDetail(){
         <div class="breakdown">${a.scoreParts.map(p=>`<span>${p}</span>`).join('')}</div>
         ${a.conditionNote?`<div class="hint" style="margin-top:6px">מצב הדירה (${a.condition}/5): ${a.conditionNote}</div>`:''}
         <h4>מחיר</h4><div>${a.price||'<span class="hint">לא הוזן — data/manual.json</span>'}</div>
+        <h4>שליחת תמונות ללקוח</h4>
+        <div class="share">
+          <div class="url">${galleryLink(a)}</div>
+          <div class="btns">
+            <a class="wa" target="_blank" href="https://wa.me/?text=${encodeURIComponent('תמונות ופרטים של הדירה '+a.name+' בואל טורנס:\n'+galleryLink(a))}">💬 שלח בוואטסאפ</a>
+            <button class="cp" id="cpLink">📋 העתק קישור</button>
+            <a class="op" target="_blank" href="gallery.html?a=${a.id}">👁 תצוגה מקדימה</a>
+          </div>
+          <div class="hint" style="margin-top:6px">הלקוח רואה: תמונות, נתוני הדירה וסידור המיטות. בלי דירוג, הערות או מחיר.</div>
+        </div>
         <h4>נתונים עיקריים</h4>
         <div class="kv">
           <div><small>אורחים (מקס׳)</small><b>${a.maxGuests}</b></div>
@@ -557,6 +576,7 @@ function drawDetail(){
   $('#gprev').onclick=()=>setIdx(idx-1); $('#gnext').onclick=()=>setIdx(idx+1);
   document.querySelectorAll('#thumbs img').forEach(t=>t.onclick=()=>setIdx(+t.dataset.i));
   $('#gmain').onclick=()=>setIdx(idx+1);
+  $('#cpLink').onclick=async()=>{ const b=$('#cpLink'); try{ await navigator.clipboard.writeText(galleryLink(a)); b.textContent='✓ הועתק'; }catch(e){ prompt('העתק את הקישור:', galleryLink(a)); } setTimeout(()=>b.textContent='📋 העתק קישור',1500); };
   $('#note').oninput=e=>{ const v=e.target.value; if(v.trim()) notes[a.id]=v; else delete notes[a.id]; saveNotes(); };
 }
 function setIdx(i){
