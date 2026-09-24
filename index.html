@@ -198,9 +198,9 @@
     <div class="logo">StoliSki <small>קטלוג דירות · ואל טורנס</small></div>
     <div class="search"><input id="q" type="search" placeholder="חיפוש: שם, קוד, רזידנס, רחוב…"></div>
     <div class="tabs">
-      <button data-view="grid" class="on">כרטיסים</button>
+      <button data-view="grid">כרטיסים</button>
       <button data-view="table">טבלה</button>
-      <button data-view="map">מפה</button>
+      <button data-view="map" class="on">מפה</button>
     </div>
     <button id="ftog" class="chip" style="display:none">סינון ▾</button>
     <select id="sort">
@@ -275,7 +275,7 @@ const LABELS = {
 const FILTER_AMEN = ['HAS_SKI_IN_SKI_OUT','HAS_BALCONY_TERRASSE','HAS_DISHWASHER','HAS_TV','HAS_AIR_CONDITIONING','HAS_WASHER','HAS_ELEVATOR'];
 const RES = [...new Set(A.map(a=>a.residence))].sort();
 
-const state = { q:'', tier:new Set(), res:new Set(), guests:0, beds:0, amen:new Set(), pub:'', sort:'score', view:'grid', cmp:[], tsort:{k:'code',d:1} };
+const state = { q:'', tier:new Set(), res:new Set(), guests:0, beds:0, amen:new Set(), pub:'', sort:'score', view:'map', cmp:[], tsort:{k:'code',d:1} };
 const $ = s=>document.querySelector(s);
 
 /* ---------- notes (localStorage) ---------- */
