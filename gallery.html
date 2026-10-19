@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#30b48d">
 <meta property="og:title" content="StoliSki – תמונות הדירה">
-<meta property="og:description" content="חופשת סקי בואל טורנס – דירות Ski-in/Ski-out">
+<meta property="og:description" content="חופשת סקי בצרפת – דירות Ski-in/Ski-out">
 <title>StoliSki – תמונות הדירה</title>
 <style>
   :root{--brand:#30b48d;--brand-dk:#22936f;--text:#1c2430;--muted:#66707f;--chip:#eef3f8;--line:#e3e7ee}
@@ -45,14 +45,16 @@
 </style>
 </head>
 <body>
-<header><div class="logo">StoliSki<small>חופשות סקי · ואל טורנס</small></div></header>
+<header><div class="logo">StoliSki<small>חופשות סקי בצרפת</small></div></header>
 <div id="app"></div>
 <div class="lb" id="lb"><button class="x" id="lbx">✕</button><img id="lbimg" alt=""><span class="cnt" id="lbcnt"></span></div>
-<script src="data/apartments.js?v=4"></script>
+<script src="data/apartments.js?v=5"></script>
+<script src="track.js?v=1"></script>
 <script>
 const LABELS = {HAS_SKI_IN_SKI_OUT:'Ski-in / Ski-out', HAS_BALCONY_TERRASSE:'מרפסת', HAS_DISHWASHER:'מדיח', HAS_TV:'טלוויזיה', HAS_AIR_CONDITIONING:'מיזוג', HAS_WASHER:'מכונת כביסה', HAS_ELEVATOR:'מעלית', HAS_COFFEE_MAKER:'מכונת קפה'};
 const AGENCY_WA = '972555081868';
-const id = new URLSearchParams(location.search).get('a');
+const qs = new URLSearchParams(location.search);
+const id = qs.get('a'), linkId = qs.get('s'); // s = link id from a tracked send; previews have none
 const a = (window.APARTMENTS||[]).find(x=>x.id===id);
 const app = document.getElementById('app');
 let idx = 0;
@@ -70,7 +72,7 @@ if(!a){
     <div class="thumbs" id="thumbs">${ph.map((p,i)=>`<img src="${p.file}" data-i="${i}" class="${i===0?'on':''}" loading="lazy" alt="">`).join('')}</div>
     <main>
       <h1>${a.name}</h1>
-      <div class="res">${a.residence} · ואל טורנס</div>
+      <div class="res">${a.residence} · ${({'Val Thorens':'ואל טורנס','Tignes':'טין'})[a.resort]||a.resort}</div>
       <div class="facts">
         <span class="fact">👥 עד ${a.maxGuests} אורחים</span>
         <span class="fact">🛏 ${a.beds} מיטות</span>
@@ -83,8 +85,14 @@ if(!a){
       <div class="tags" style="margin-top:8px">${a.highlights.map(h=>`<span class="tag">${LABELS[h]||h}</span>`).join('')}</div>
       ${a.extrasHe.length?`<p style="color:var(--muted);font-size:13px">${a.extrasHe.join(' · ')}</p>`:''}
       <div class="cta">רוצים לשמוע עוד על הדירה או לבדוק זמינות?<br>
-        <a href="https://wa.me/${AGENCY_WA}?text=${encodeURIComponent('היי, ראיתי את הדירה '+a.name+' ב-StoliSki ואשמח לפרטים')}">💬 דברו איתנו בוואטסאפ</a></div>
+        <a id="contact" href="https://wa.me/${AGENCY_WA}?text=${encodeURIComponent('היי, ראיתי את הדירה '+a.name+' ב-StoliSki ואשמח לפרטים')}">💬 דברו איתנו בוואטסאפ</a></div>
     </main>`;
+  if(linkId){
+    const device = /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'נייד' : 'מחשב';
+    let first = true; try{ first = !sessionStorage.getItem('opened_'+linkId); sessionStorage.setItem('opened_'+linkId,'1'); }catch(e){}
+    if(first) track('gallery_open',{apt:a.name,s:linkId,device});
+    document.getElementById('contact').addEventListener('click',()=>track('gallery_contact',{apt:a.name,s:linkId,device}));
+  }
   const main=document.getElementById('main'), cnt=document.getElementById('cnt');
   const thumbs=[...document.querySelectorAll('#thumbs img')];
   function set(i){ idx=(i+ph.length)%ph.length; main.src=ph[idx].file; cnt.textContent=`${idx+1} / ${ph.length}`;

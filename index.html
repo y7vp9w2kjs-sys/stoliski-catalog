@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="StoliSki">
 <meta name="theme-color" content="#30b48d">
-<title>StoliSki – קטלוג דירות ואל טורנס</title>
+<title>StoliSki – קטלוג דירות</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
   :root{
@@ -76,6 +76,8 @@
   .share .wa{background:#25d366;color:#fff}
   .share .cp{background:var(--brand);color:#fff}
   .share .op{background:#fff;color:var(--text);border:1px solid var(--line)}
+  .share .agent{display:flex;align-items:center;gap:6px;font-size:13px;margin-bottom:8px}
+  .share .agent input{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;width:140px}
   .note-dot{position:absolute;top:12px;left:110px;background:#ffd84d;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:600}
 
   /* modal */
@@ -195,7 +197,7 @@
 <body>
 <header>
   <div class="bar">
-    <div class="logo">StoliSki <small>קטלוג דירות · ואל טורנס</small></div>
+    <div class="logo">StoliSki <small>קטלוג דירות · ואל טורנס וטין</small></div>
     <div class="search"><input id="q" type="search" placeholder="חיפוש: שם, קוד, רזידנס, רחוב…"></div>
     <div class="tabs">
       <button data-view="grid">כרטיסים</button>
@@ -213,6 +215,7 @@
     </select>
   </div>
   <div class="filters">
+    <div class="fgroup"><label>אתר</label><span id="fResort"></span></div>
     <div class="fgroup"><label>דירוג</label>
       <button class="chip tg" data-tier="green">🟢 ירוק</button><button class="chip to" data-tier="orange">🟠 כתום</button><button class="chip ty" data-tier="yellow">🟡 צהוב</button>
     </div>
@@ -235,7 +238,7 @@
   <div class="count" id="count"></div>
   <div class="grid" id="grid"></div>
   <table class="list" id="list"><thead><tr>
-    <th data-k="score">דירוג</th><th data-k="code">קוד</th><th data-k="name">שם</th><th data-k="residence">רזידנס</th><th data-k="street">רחוב</th>
+    <th data-k="score">דירוג</th><th data-k="code">קוד</th><th data-k="name">שם</th><th data-k="resort">אתר</th><th data-k="residence">רזידנס</th><th data-k="street">רחוב</th>
     <th data-k="maxGuests">אורחים</th><th data-k="beds">מיטות</th><th data-k="bathrooms">מקלחת</th><th data-k="sizeM2">מ״ר</th>
     <th data-k="condition">מצב</th><th>מיטות (פירוט)</th><th>מתאים ל</th><th>צ׳ק-אין</th><th>מחיר</th><th>אתר</th>
   </tr></thead><tbody></tbody></table>
@@ -243,7 +246,8 @@
     <div class="mapctl">
       <button id="m3d" class="on">תלת-מימד</button>
       <button id="m2d">מלמעלה</button>
-      <button id="mfit">מרכז את הדירות</button>
+      <span id="mresorts"></span>
+      <button id="mfit">הכל</button>
     </div>
     <div id="map"></div>
   </div>
@@ -259,12 +263,15 @@
 <div class="overlay" id="ov"><div class="modal" id="modal"></div></div>
 <div class="overlay" id="ovC"><div class="modal"><div class="mhead"><h2>השוואה</h2><span class="sp"></span><button class="x" id="xC">✕</button></div><div class="cmpWrap" id="cmpBody"></div></div></div>
 
-<script src="data/apartments.js?v=4"></script>
+<script src="data/apartments.js?v=5"></script>
+<script src="track.js?v=1"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
 const A = window.APARTMENTS || [];
 const SITE_URL = 'https://y7vp9w2kjs-sys.github.io/stoliski-catalog/';
-const galleryLink = a => SITE_URL + 'gallery.html?a=' + a.id;
+const galleryLink = (a, s) => SITE_URL + 'gallery.html?a=' + a.id + (s ? '&s=' + s : '');
+const AGENT_KEY='stoliski_agent';
+let agent=''; try{ agent=localStorage.getItem(AGENT_KEY)||''; }catch(e){}
 const LABELS = {
   HAS_SKI_IN_SKI_OUT:'Ski-in/out', HAS_BALCONY_TERRASSE:'מרפסת', HAS_MOUNTAIN_VIEW:'נוף להרים', HAS_MOUNTAIN:'הרים',
   HAS_KITCHEN:'מטבח', HAS_KITCHENETTE:'מטבחון', HAS_FRIDGE:'מקרר', HAS_MICROWAVE_OVEN:'מיקרוגל', HAS_OVEN:'תנור',
@@ -275,7 +282,7 @@ const LABELS = {
 const FILTER_AMEN = ['HAS_SKI_IN_SKI_OUT','HAS_BALCONY_TERRASSE','HAS_DISHWASHER','HAS_TV','HAS_AIR_CONDITIONING','HAS_WASHER','HAS_ELEVATOR'];
 const RES = [...new Set(A.map(a=>a.residence))].sort();
 
-const state = { q:'', tier:new Set(), res:new Set(), guests:0, beds:0, amen:new Set(), pub:'', sort:'score', view:'map', cmp:[], tsort:{k:'code',d:1} };
+const state = { q:'', resort:new Set(), tier:new Set(), res:new Set(), guests:0, beds:0, amen:new Set(), pub:'', sort:'score', view:'map', cmp:[], tsort:{k:'code',d:1} };
 const $ = s=>document.querySelector(s);
 
 /* ---------- notes (localStorage) ---------- */
@@ -284,8 +291,12 @@ let notes = {}; try{ notes = JSON.parse(localStorage.getItem(NK)||'{}'); }catch(
 const saveNotes = ()=>{ try{ localStorage.setItem(NK, JSON.stringify(notes)); }catch(e){} };
 
 /* ---------- filters UI ---------- */
+const RESORTS = [...new Set(A.map(a=>a.resort))].sort();
+const RESORT_HE = {'Val Thorens':'ואל טורנס','Tignes':'טין'};
+$('#fResort').innerHTML = RESORTS.map(r=>`<button class="chip" data-resort="${r}">${RESORT_HE[r]||r} (${A.filter(x=>x.resort===r).length})</button>`).join('');
 $('#fRes').innerHTML = RES.map(r=>`<button class="chip" data-res="${r}">${r}</button>`).join('');
 $('#fAmen').innerHTML = FILTER_AMEN.map(k=>`<button class="chip" data-amen="${k}">${LABELS[k]}</button>`).join('');
+document.querySelectorAll('[data-resort]').forEach(b=>b.onclick=()=>{ toggle(state.resort,b.dataset.resort); b.classList.toggle('on'); render(); });
 document.querySelectorAll('[data-tier]').forEach(b=>b.onclick=()=>{ toggle(state.tier,b.dataset.tier); b.classList.toggle('on'); render(); });
 document.querySelectorAll('[data-res]').forEach(b=>b.onclick=()=>{ toggle(state.res,b.dataset.res); b.classList.toggle('on'); render(); });
 document.querySelectorAll('[data-amen]').forEach(b=>b.onclick=()=>{ toggle(state.amen,b.dataset.amen); b.classList.toggle('on'); render(); });
@@ -296,7 +307,7 @@ $('#fGuests').onchange = e=>{ state.guests=+e.target.value; render(); };
 $('#fBeds').onchange = e=>{ state.beds=+e.target.value; render(); };
 $('#fPub').onchange = e=>{ state.pub=e.target.value; render(); };
 $('#sort').onchange = e=>{ state.sort=e.target.value; render(); };
-$('#clear').onclick = ()=>{ state.q='';state.tier.clear();state.res.clear();state.guests=0;state.beds=0;state.amen.clear();state.pub='';
+$('#clear').onclick = ()=>{ state.q='';state.resort.clear();state.tier.clear();state.res.clear();state.guests=0;state.beds=0;state.amen.clear();state.pub='';
   $('#q').value='';$('#fGuests').value='0';$('#fBeds').value='0';$('#fPub').value='';
   document.querySelectorAll('.chip.on').forEach(c=>c.classList.remove('on')); render(); };
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
@@ -307,6 +318,7 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
 /* ---------- filtering / sorting ---------- */
 function filtered(){
   let r = A.filter(a=>{
+    if(state.resort.size && !state.resort.has(a.resort)) return false;
     if(state.tier.size && !state.tier.has(a.tier)) return false;
     if(state.res.size && !state.res.has(a.residence)) return false;
     if(state.guests && (a.maxGuests||0) < state.guests) return false;
@@ -314,7 +326,7 @@ function filtered(){
     if(state.pub!=='' && String(a.publicListed?1:0)!==state.pub) return false;
     for(const k of state.amen) if(!a.amenities.includes(k)) return false;
     if(state.q){
-      const hay = [a.name,a.code,a.residence,a.street,a.publicName,a.perfectFor,a.perfectForHe,...a.bedSpec,...a.bedSpecHe].join(' ').toLowerCase();
+      const hay = [a.name,a.code,a.resort,RESORT_HE[a.resort]||'',a.residence,a.street,a.publicName,a.perfectFor,a.perfectForHe,...a.bedSpec,...a.bedSpecHe].join(' ').toLowerCase();
       if(!hay.includes(state.q)) return false;
     }
     return true;
@@ -359,7 +371,7 @@ function renderGrid(list){
       <div class="body">
         <div class="code ltr">${a.code}</div>
         <h3>${a.name}</h3>
-        <div class="res">${a.residence} · ${a.street||''}</div>
+        <div class="res">${RESORT_HE[a.resort]||a.resort} · ${a.residence}</div>
         <div class="facts">
           <span class="fact">👥 <b>${a.maxGuests}</b> אורחים</span>
           <span class="fact">🛏 <b>${a.beds}</b> מיטות</span>
@@ -383,7 +395,7 @@ function renderTable(list){
   const {k,d} = state.tsort;
   const rows = [...list].sort((x,y)=>{ const a=x[k]??-1,b=y[k]??-1; return (typeof a==='number'? a-b : String(a).localeCompare(String(b)))*d; });
   $('#list tbody').innerHTML = rows.map(a=>`<tr data-id="${a.id}">
-    <td>${tierBadge(a)}</td><td class="code ltr">${a.code}</td><td>${a.name}</td><td>${a.residence}</td><td>${a.street||''}</td>
+    <td>${tierBadge(a)}</td><td class="code ltr">${a.code}</td><td>${a.name}</td><td>${RESORT_HE[a.resort]||a.resort}</td><td>${a.residence}</td><td>${a.street||''}</td>
     <td>${a.maxGuests}</td><td>${a.beds}</td><td>${a.bathrooms}</td><td>${a.sizeM2}</td><td>${a.condition??'-'}</td>
     <td style="white-space:normal;min-width:180px">${a.bedSpecHe.join(' · ')}</td>
     <td style="white-space:normal">${a.perfectForHe}</td><td>${a.checkInMethodHe||''}</td><td>${a.price||'—'}</td>
@@ -426,22 +438,32 @@ function groupByBuilding(list){
   list.filter(a=>a.lat&&a.lng).forEach(a=>{ const k=a.lat.toFixed(4)+','+a.lng.toFixed(4); (groups[k]=groups[k]||[]).push(a); });
   return Object.values(groups);
 }
-function fitMarkers(animate){
-  const pts=markers.map(m=>m.getLngLat());
+function fitTo(pts,animate){
   if(!pts.length) return;
   const pitch=map.getPitch(), bearing=map.getBearing();
-  if(pts.length===1){ map.easeTo({center:pts[0],zoom:17,pitch,bearing,duration:animate?800:0}); return; }
-  const b=new maplibregl.LngLatBounds(pts[0],pts[0]); pts.forEach(p=>b.extend(p));
-  // fitBounds is unreliable when pitched: compute the flat camera, then tilt it and back off a little.
-  const cam=map.cameraForBounds(b,{padding:{top:80,bottom:40,left:60,right:60},maxZoom:16.8,bearing:0});
-  if(!cam) return;
-  map.easeTo({center:cam.center,zoom:cam.zoom-(pitch>30?0.35:0),pitch,bearing,duration:animate?800:0});
+  const lngs=pts.map(p=>p.lng), lats=pts.map(p=>p.lat);
+  const center={lng:(Math.min(...lngs)+Math.max(...lngs))/2, lat:(Math.min(...lats)+Math.max(...lats))/2};
+  if(pts.length===1){ map.easeTo({center:pts[0],zoom:16.5,pitch,bearing,duration:animate?800:0}); return; }
+  // cameraForBounds misreports once 3D terrain is on, so derive the zoom from the
+  // span directly: how many degrees of longitude fit across the canvas at zoom z.
+  const w=map.getContainer().clientWidth, h=map.getContainer().clientHeight;
+  const dLng=Math.max(Math.max(...lngs)-Math.min(...lngs), 1e-4);
+  const dLat=Math.max(Math.max(...lats)-Math.min(...lats), 1e-4);
+  const zLng=Math.log2((w/256)*360/(dLng*1.8));
+  const zLat=Math.log2((h/256)*360/(dLat*1.8*Math.cos(center.lat*Math.PI/180)));
+  const zoom=Math.min(zLng, zLat, 16.8) - (pitch>30?0.4:0);
+  map.easeTo({center,zoom,pitch,bearing,duration:animate?800:0});
 }
-// Put the marker near the bottom of the map and cap the popup so it always fits above it.
-function framePopup(popup,lngLat){
-  const h=map.getContainer().clientHeight;
-  const c=popup.getElement()?.querySelector('.maplibregl-popup-content'); if(c) c.style.maxHeight=(h-130)+'px';
-  map.easeTo({center:lngLat,offset:[0,h/2-80],duration:450});
+// Val Thorens and Tignes are ~30km apart, so fitting both zooms out past any useful
+// detail. Open on whichever resort has the most units; the chips jump between them.
+function fitResort(resort,animate){
+  fitTo(markers.filter(m=>m.__resort===resort).map(m=>m.getLngLat()),animate);
+}
+function fitMarkers(animate){
+  if(!markers.length) return;
+  const byResort={}; markers.forEach(m=>{ (byResort[m.__resort]=byResort[m.__resort]||[]).push(m.getLngLat()); });
+  const groups=Object.entries(byResort).sort((a,b)=>b[1].length-a[1].length);
+  fitTo(groups.length>1 ? groups[0][1] : markers.map(m=>m.getLngLat()), animate);
 }
 function placeMarkers(list){
   markers.forEach(m=>m.remove()); markers=[];
@@ -454,8 +476,12 @@ function placeMarkers(list){
     popup.on('open',()=>framePopup(popup,[a.lng,a.lat]));
     popup.setDOMContent(buildPopup(g,popup));
     const m=new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat([a.lng,a.lat]).setPopup(popup).addTo(map);
+    m.__resort=a.resort;
     markers.push(m);
   });
+  const present=[...new Set(markers.map(m=>m.__resort))];
+  $('#mresorts').innerHTML = present.length>1 ? present.map(r=>`<button data-jump="${r}">${RESORT_HE[r]||r}</button>`).join('') : '';
+  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>fitResort(b.dataset.jump,true));
   $('#maplist').innerHTML = 'לחיצה על סמן פותחת את הדירות בבניין. גרירה עם לחצן ימני / שני אצבעות מסובבת ומטה את המפה. · ' +
     groupByBuilding(list).map(g=>`<b>${g[0].residence}</b> (${g.length})`).join(' · ');
   fitMarkers(false);
@@ -465,7 +491,7 @@ function buildPopup(g,popup){
   const draw=(sel)=>{
     const a=sel;
     root.innerHTML=`
-      <div class="pp-head">${g[0].residence}<small>${g[0].street||g[0].address||''} · ${g.length} דירות</small></div>
+      <div class="pp-head">${g[0].residence}<small>${RESORT_HE[g[0].resort]||g[0].resort} · ${g[0].street||g[0].address||''} · ${g.length} דירות</small></div>
       ${g.length>1?`<div class="pp-units">${g.map(x=>`<button data-u="${x.id}" class="${a&&a.id===x.id?'on':''}"><b>${x.name} ${tierBadge(x)}</b><span>${x.maxGuests} אורחים · ${x.beds} מיטות · ${x.sizeM2} מ״ר</span></button>`).join('')}</div>`:''}
       ${a?`<div class="pp-card">
         <img src="${a.photos[0]?a.photos[0].file:''}" alt="">
@@ -509,7 +535,7 @@ function drawDetail(){
     <div class="mhead">
       <button class="nav" id="pv" ${pos<=0?'disabled':''}>→ קודם</button>
       <span class="code ltr">${a.code}</span><h2>${a.name}</h2>
-      <span style="color:var(--muted)">${a.residence}</span>
+      <span style="color:var(--muted)">${RESORT_HE[a.resort]||a.resort} · ${a.residence}</span>
       ${tierBadge(a)}
       <span class="sp"></span>
       <button class="nav" id="nx" ${pos>=curList.length-1?'disabled':''}>הבא ←</button>
@@ -531,9 +557,10 @@ function drawDetail(){
         <h4>מחיר</h4><div>${a.price||'<span class="hint">לא הוזן — data/manual.json</span>'}</div>
         <h4>שליחת תמונות ללקוח</h4>
         <div class="share">
+          <label class="agent" for="agentName">השם שלך: <input id="agentName" value="${agent.replace(/"/g,'&quot;')}" placeholder="לסטטיסטיקת שליחות"></label>
           <div class="url">${galleryLink(a)}</div>
           <div class="btns">
-            <a class="wa" target="_blank" href="https://wa.me/?text=${encodeURIComponent('תמונות ופרטים של הדירה '+a.name+' בואל טורנס:\n'+galleryLink(a))}">💬 שלח בוואטסאפ</a>
+            <a class="wa" id="waLink" target="_blank" href="https://wa.me/?text=${encodeURIComponent('תמונות ופרטים של הדירה '+a.name+' בואל טורנס:\n'+galleryLink(a))}">💬 שלח בוואטסאפ</a>
             <button class="cp" id="cpLink">📋 העתק קישור</button>
             <a class="op" target="_blank" href="gallery.html?a=${a.id}">👁 תצוגה מקדימה</a>
           </div>
@@ -576,7 +603,10 @@ function drawDetail(){
   $('#gprev').onclick=()=>setIdx(idx-1); $('#gnext').onclick=()=>setIdx(idx+1);
   document.querySelectorAll('#thumbs img').forEach(t=>t.onclick=()=>setIdx(+t.dataset.i));
   $('#gmain').onclick=()=>setIdx(idx+1);
-  $('#cpLink').onclick=async()=>{ const b=$('#cpLink'); try{ await navigator.clipboard.writeText(galleryLink(a)); b.textContent='✓ הועתק'; }catch(e){ prompt('העתק את הקישור:', galleryLink(a)); } setTimeout(()=>b.textContent='📋 העתק קישור',1500); };
+  $('#agentName').oninput=e=>{ agent=e.target.value.trim(); try{ localStorage.setItem(AGENT_KEY, agent); }catch(err){} };
+  // each send gets its own link id, so the gallery can report whether the customer opened it
+  $('#waLink').onclick=e=>{ const s=newLinkId(); e.currentTarget.href='https://wa.me/?text='+encodeURIComponent('תמונות ופרטים של הדירה '+a.name+' בואל טורנס:\n'+galleryLink(a,s)); track('share_whatsapp',{apt:a.name,agent,s}); };
+  $('#cpLink').onclick=async()=>{ const b=$('#cpLink'), s=newLinkId(), link=galleryLink(a,s); track('share_copy',{apt:a.name,agent,s}); try{ await navigator.clipboard.writeText(link); b.textContent='✓ הועתק'; }catch(e){ prompt('העתק את הקישור:', link); } setTimeout(()=>b.textContent='📋 העתק קישור',1500); };
   $('#note').oninput=e=>{ const v=e.target.value; if(v.trim()) notes[a.id]=v; else delete notes[a.id]; saveNotes(); };
 }
 function setIdx(i){
@@ -616,6 +646,7 @@ $('#cmpGo').onclick=()=>{
     ${row('דירה',a=>`<b>${a.name}</b><br><span class="ltr">${a.code}</span>`)}
     ${row('דירוג',a=>tierBadge(a)+'<br><span class="hint">מצב '+(a.condition??'-')+'/5</span>')}
     ${row('מחיר',a=>a.price||'—')}
+    ${row('אתר',a=>RESORT_HE[a.resort]||a.resort)}
     ${row('רזידנס',a=>a.residence+'<br><span class="hint">'+(a.street||'')+'</span>')}
     ${row('אורחים',a=>a.maxGuests)}
     ${row('מיטות',a=>a.beds)}

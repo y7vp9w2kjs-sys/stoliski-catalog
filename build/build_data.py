@@ -57,6 +57,9 @@ HIGHLIGHT_AMENITIES = [
 ]
 
 RESIDENCE_MAP = [
+    ('Tignes - LRP', 'Le Rond Point des Pistes'),
+    ('Tignes - Moutières MB1', 'Les Moutières B1'),
+    ('Tignes - Moutières MB2', 'Les Moutières B2'),
     ('Cime', 'Cimes de Caron'),
     ('Altineige', "Odalys L'Altineige"),
     ('Arcelle', "L'Arcelle"),
@@ -73,6 +76,12 @@ RESIDENCE_MAP = [
 ]
 
 
+def resort_for(list_name, city):
+    if list_name.startswith('Tignes') or (city or '').strip().lower() == 'tignes':
+        return 'Tignes'
+    return 'Val Thorens'
+
+
 def residence_for(list_name, address2):
     for prefix, label in RESIDENCE_MAP:
         if list_name.startswith(prefix):
@@ -81,6 +90,9 @@ def residence_for(list_name, address2):
 
 
 def code_from(public_name, list_name):
+    if list_name.startswith('Tignes'):
+        m = re.search(r'\(([^)]+)\)', public_name or '')
+        return m.group(1).strip() if m else list_name.replace('Tignes - ', '')
     unit = list_name.split()[-1].upper()  # "Lauzières 003" -> "003", "Joker C3" -> "C3"
     m = re.search(r'\(([A-Z]+)-([A-Z0-9]+)\)', public_name or '')
     if m:
@@ -165,6 +177,7 @@ def normalize(raw):
             'name': list_name,
             'code': code,
             'publicName': public_name,
+            'resort': resort_for(list_name, addr.get('city')),
             'residence': residence_for(list_name, addr.get('address2')),
             'street': (addr.get('address') or '').split(',')[-1].strip(),
             'address': addr.get('address'),
@@ -211,7 +224,7 @@ def normalize(raw):
                 a['geoSnapped'] = True
             a['lat'], a['lng'] = lat, lng
 
-    apartments.sort(key=lambda a: (a['residence'], a['name']))
+    apartments.sort(key=lambda a: (a['resort'], a['residence'], a['name']))
     return apartments
 
 
@@ -253,7 +266,11 @@ def main():
     apartments = normalize(raw)
     for a in apartments:
         a['publicListed'] = a['uid'] in public_uids if public_uids else None
-        hebrew.apply(a)
+        # Val Thorens listings use a bullet format; Tignes ones are prose.
+        if a['features'] or a['bedSpec']:
+            hebrew.apply(a)
+        else:
+            hebrew.apply_prose(a, a['summary'])
     for kind, text in sorted(hebrew.UNKNOWN):
         print(f'UNTRANSLATED {kind}: {text!r}')
     manual_path = os.path.join(DATA_DIR, 'manual.json')

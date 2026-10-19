@@ -128,3 +128,101 @@ def apply(a):
         parts.append('סידור מיטות:\n' + '\n'.join('• ' + b for b in a['bedSpecHe']))
     a['descriptionHe'] = '\n\n'.join(p for p in parts if p)
     return a
+
+
+# ---------------------------------------------------------------------------
+# Tignes listings are written as prose instead of the Val Thorens bullet format,
+# so they need their own parser. Same rule-based approach: anything unmatched is
+# reported rather than silently left in English.
+
+WORDNUM = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6}
+
+PROSE_BEDS = [
+    (r'fold-?down single beds?', 'מיטת יחיד מתקפלת', 'מיטות יחיד מתקפלות'),
+    (r'bunk beds?', 'מיטת קומתיים', 'מיטות קומתיים'),
+    (r'sofa beds?', 'ספה נפתחת', 'ספות נפתחות'),
+    (r'double beds?', 'מיטה זוגית', 'מיטות זוגיות'),
+    (r'single beds?', 'מיטת יחיד', 'מיטות יחיד'),
+]
+
+PROSE_FEATURES = [
+    (r'\bbalcony\b', 'מרפסת'),
+    (r'mountain views?', 'נוף להרים'),
+    (r'\bkitchenette\b', 'מטבחון מאובזר'),
+    (r'washing machine', 'מכונת כביסה בדירה'),
+    (r'\bTV\b', 'טלוויזיה'),
+    (r'dining (?:table|space)', 'פינת אוכל'),
+    (r'bathtub with shower', 'אמבטיה עם מקלחת'),
+    (r'bathroom has a shower', 'מקלחת'),
+    (r'coffee maker', 'מכונת קפה'),
+    (r'\bmicrowave\b', 'מיקרוגל'),
+    (r'refrigerator', 'מקרר'),
+    (r'\bkettle\b', 'קומקום'),
+    (r'\bhob\b', 'כיריים'),
+]
+
+
+def _prose_bed(phrase):
+    phrase = phrase.strip().lower()
+    # "one double bed for two guests" -> "one double bed"
+    phrase = re.sub(r'\s+for\s+[\w-]+\s+guests?$', '', phrase).strip()
+    m = re.match(r'^(\w+)\s+(.*)$', phrase)
+    count, kind = 1, phrase
+    if m and m.group(1) in WORDNUM:
+        count, kind = WORDNUM[m.group(1)], m.group(2)
+    elif m and m.group(1).isdigit():
+        count, kind = int(m.group(1)), m.group(2)
+    kind = kind.strip()
+    for rx, sing, plur in PROSE_BEDS:
+        if re.fullmatch(rx, kind):
+            return sing if count == 1 else f'{count} {plur}'
+    UNKNOWN.add(('prose-bed', phrase))
+    return phrase
+
+
+def parse_prose(text, max_guests, resort):
+    """Pull bed layout + features out of a prose listing description."""
+    out = {'headline': '', 'perfectFor': '', 'bedSpec': [], 'features': [], 'extras': []}
+    if not text:
+        return out
+    flat = ' '.join(text.split())
+
+    m = re.search(r'Sleeping arrangement:\s*([^.;]+(?:;[^.]*)?)\.', flat, re.I)
+    if m:
+        seg = re.split(r';', m.group(1))[0]
+        for part in re.split(r',| and ', seg):
+            part = part.strip()
+            if part and not re.match(r'^maximum', part, re.I):
+                out['bedSpec'].append(_prose_bed(part))
+
+    for rx, label in PROSE_FEATURES:
+        if re.search(rx, flat, re.I) and label not in out['features']:
+            out['features'].append(label)
+
+    n = max_guests or 0
+    out['headline'] = f'סטודיו עם מרפסת ב{"טין" if resort == "Tignes" else "ואל טורנס"}' + (f', עד {n} אנשים' if n else '')
+    if n >= 4:
+        out['perfectFor'] = f'משפחה או עד {n} חברים'
+    elif n == 2:
+        out['perfectFor'] = 'זוג'
+    return out
+
+
+def apply_prose(a, raw_summary):
+    """Use for records whose summary is prose (no bullet list)."""
+    pr = parse_prose(raw_summary, a.get('maxGuests'), a.get('resort'))
+    a['headlineHe'] = pr['headline']
+    a['perfectForHe'] = pr['perfectFor']
+    a['bedSpecHe'] = pr['bedSpec']
+    a['featuresHe'] = pr['features']
+    a['extrasHe'] = []
+    a['checkInMethodHe'] = CHECKIN.get(a.get('checkInMethod') or '', a.get('checkInMethod'))
+    parts = [a['headlineHe']]
+    if a['perfectForHe']:
+        parts.append('מתאים ל: ' + a['perfectForHe'])
+    if a['featuresHe']:
+        parts.append('\n'.join('• ' + f for f in a['featuresHe']))
+    if a['bedSpecHe']:
+        parts.append('סידור מיטות:\n' + '\n'.join('• ' + b for b in a['bedSpecHe']))
+    a['descriptionHe'] = '\n\n'.join(p for p in parts if p)
+    return a

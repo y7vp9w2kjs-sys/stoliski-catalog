@@ -28,8 +28,8 @@ build/raw/            הייצוא הגולמי מ-Hostfully
 1. להתחבר ל-Hostfully בכרום ולפתוח עמוד של דירה כלשהי.
 2. להריץ בקונסול את הסקריפט ששולף לכל UID את
    `/api/v3.2/properties/{uid}`, `/api/internal/property-descriptions`, `/api/v3.2/photos`, `/api/v3.2/amenities`
-   ולשמור את התוצאה כ-`build/raw/raw_all32.json` (רשימת ה-UIDs נמצאת בקובץ הקיים).
-3. `python3 build/build_data.py build/raw/raw_all32.json`
+   ולשמור את התוצאה כ-`build/raw/raw_all36.json` (רשימת ה-UIDs נמצאת בקובץ הקיים).
+3. `python3 build/build_data.py build/raw/raw_all36.json`
 
 הסקריפט מסיר קודי key-box ופרטי Wi-Fi ולא כותב אותם לשום קובץ.
 
@@ -53,4 +53,4 @@ build/raw/            הייצוא הגולמי מ-Hostfully
 | מרפסת / מדיח / טלוויזיה | +0.5 כל אחד | Hostfully |
 | מיזוג / כביסה / מעלית / קפה | +0.5 סה״כ | Hostfully |
 
-**לשנות דירוג של דירה:** לערוך `condition` ב-`data/manual.json` ולהריץ `python3 build/build_data.py build/raw/raw_all32.json --skip-images`. שם גם שדה `price` (טקסט חופשי) שמוצג בדף הדירה, בטבלה ובהשוואה.
+**לשנות דירוג של דירה:** לערוך `condition` ב-`data/manual.json` ולהריץ `python3 build/build_data.py build/raw/raw_all36.json --skip-images`. שם גם שדה `price` (טקסט חופשי) שמוצג בדף הדירה, בטבלה ובהשוואה.
