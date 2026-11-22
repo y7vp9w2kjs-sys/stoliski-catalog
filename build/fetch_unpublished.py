@@ -2,13 +2,18 @@
 
     python3 build/fetch_unpublished.py          # merges into build/raw/raw_all.json
 
-For unpublished units the public API serves only the core record
-(/api/public/properties/<uid>) — name, address, capacity, and the cover photo.
-The gallery, description text and amenities live behind /api/public/dbs/* which
-404s until the unit is published, so those records are marked `dataPartial`.
+Two sources, in order of preference:
 
-Publishing the unit in Hostfully is what makes the normal refresh pick it up in
-full; this script just keeps it from being invisible in the meantime.
+1. build/raw/unpublished_full.json — a full admin export (photos, descriptions,
+   amenities, size). Captured from a logged-in Hostfully session; see README.
+   Used as-is when present.
+2. The public core record (/api/public/properties/<uid>) — name, address,
+   capacity and the cover photo only. The gallery, description and amenities sit
+   behind /api/public/dbs/*, which 404s until the unit is published, so records
+   built this way are marked `dataPartial` and shown as "טרם דורגה".
+
+Publishing the unit in Hostfully is what makes the ordinary refresh pick it up
+in full and retires both of these paths.
 
 UIDS below comes from the Hostfully admin property list. Add or remove lines as
 the inventory changes.
@@ -83,8 +88,16 @@ def one(entry):
 
 def main():
     entries = [tuple(l.split('|')) for l in UIDS.strip().split('\n') if l.strip()]
+    full_path = os.path.join(RAW, 'unpublished_full.json')
+    full = {}
+    if os.path.exists(full_path):
+        full = {o['uid']: o for o in json.load(open(full_path, encoding='utf-8'))}
+
+    todo = [e for e in entries if e[1] not in full]
     with ThreadPoolExecutor(max_workers=8) as ex:
-        extra = list(ex.map(one, entries))
+        extra = list(ex.map(one, todo))
+    # full admin records first, then whatever only the public API could supply
+    extra = [full[u] for _, u in entries if u in full] + extra
 
     path = os.path.join(RAW, 'raw_all.json')
     data = json.load(open(path, encoding='utf-8')) if os.path.exists(path) else []
@@ -97,11 +110,12 @@ def main():
     pub = os.path.join(RAW, 'public_props.json')
     if os.path.exists(pub):  # these are NOT on the public site — leave that list alone
         pass
-    print(f'added {len(added)} unpublished properties (partial data); total {len(data)}')
+    print(f'added {len(added)} unpublished properties; total {len(data)}')
     for o in added:
         a = o['property']
-        print(f"  {o['listName']:12} {a['availability']['maxGuests']} guests, "
-              f"{a['bedrooms']} bed, {'cover photo' if o['photos'] else 'NO photo'}")
+        src = 'partial (public)' if o.get('dataPartial') else 'full (admin export)'
+        print(f"  {o['listName']:12} {len(o['photos']):>3} photos, "
+              f"{len(o['amenities']):>2} amenities  [{src}]")
 
 
 if __name__ == '__main__':

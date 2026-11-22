@@ -17,6 +17,8 @@ BED_TYPES = [  # (regex on the lower-cased type, singular, plural)
     (r'double beds?', 'מיטה זוגית', 'מיטות זוגיות'),
     (r'single beds?', 'מיטת יחיד', 'מיטות יחיד'),
     (r'pull-?out beds? \(under the sofa\)', 'מיטה נשלפת (מתחת לספה)', 'מיטות נשלפות (מתחת לספה)'),
+    (r'pull-?out beds? \(under a single bed\)', 'מיטה נשלפת (מתחת למיטת יחיד)', 'מיטות נשלפות (מתחת למיטת יחיד)'),
+    (r'pull-?out beds?', 'מיטה נשלפת', 'מיטות נשלפות'),
     (r'pull-?out beds? \(under the bunk-?bed\)', 'מיטה נשלפת (מתחת למיטת הקומתיים)', 'מיטות נשלפות (מתחת למיטת הקומתיים)'),
 ]
 
@@ -67,6 +69,8 @@ FEATURES = {
     'heating and hot water': 'חימום ומים חמים',
     'ski rental store nearby': 'חנות השכרת ציוד סקי בקרבת מקום',
     'balcony with mountain views': 'מרפסת עם נוף להרים',
+    'terrace with mountain views': 'טרסה עם נוף להרים',
+    'mountain views': 'נוף להרים',
     'tv included': 'טלוויזיה',
     'comfortable double bed': 'מיטה זוגית נוחה',
     'coffee machine': 'מכונת קפה',
@@ -111,14 +115,15 @@ def headline(s):
             out += f', עד {up} אנשים'
         return out
     # current wording: no bed count, optional size, optional capacity
-    m = re.match(r'^Ski-in/Ski-out,?\s*(?:(\d+)\s*m²\s*)?apartment in ([\w\s]+?)'
+    m = re.match(r'^Ski-in/Ski-out,?\s*(?:(\d+)\s*m²\s*)?(duplex\s+)?apartment in ([\w\s]+?)'
                  r'(?:\s*\(up to (\d+) (?:people|guests)\))?\.?$', s, re.I)
     if m:
-        size, place, up = m.groups()
+        size, duplex, place, up = m.groups()
         place = {'val thorens': 'ואל טורנס', 'tignes': 'טין'}.get(place.strip().lower(), place.strip())
-        out = f'דירה ב{place}'
+        kind = 'דופלקס' if duplex else 'דירה'
+        out = f'{kind} ב{place}'
         if size:
-            out = f'דירה של {size} מ״ר ב{place}'
+            out = f'{kind} של {size} מ״ר ב{place}'
         out += ' עם גישה ישירה למסלולים (Ski-in / Ski-out)'
         if up:
             out += f', עד {up} אנשים'
@@ -163,6 +168,7 @@ WORDNUM = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6}
 
 PROSE_BEDS = [
     (r'fold-?down single beds?', 'מיטת יחיד מתקפלת', 'מיטות יחיד מתקפלות'),
+    (r'pull-?out beds?', 'מיטה נשלפת', 'מיטות נשלפות'),
     (r'single bunk beds?', 'מיטת קומתיים יחיד', 'מיטות קומתיים יחיד'),
     (r'bunk beds?', 'מיטת קומתיים', 'מיטות קומתיים'),
     (r'sofa beds?', 'ספה נפתחת', 'ספות נפתחות'),
@@ -174,6 +180,12 @@ PROSE_FEATURES = [
     (r'\bbalcony\b', 'מרפסת'),
     (r'mountain views?', 'נוף להרים'),
     (r'\bkitchenette\b', 'מטבחון מאובזר'),
+    (r'equipped kitchen', 'מטבח מאובזר'),
+    (r'ski[- ]in\s*/\s*ski[- ]out', 'גישה ישירה למסלולים (Ski-in / Ski-out)'),
+    (r'ski rental', 'השכרת ציוד סקי בקרבת מקום'),
+    (r'\bheating\b', 'חימום'),
+    (r'hot water', 'מים חמים'),
+    (r'ground-?floor', 'קומת קרקע'),
     (r'washing machine', 'מכונת כביסה בדירה'),
     (r'\bTV\b', 'טלוויזיה'),
     (r'dining (?:table|space)', 'פינת אוכל'),
@@ -191,6 +203,7 @@ def _prose_bed(phrase):
     phrase = phrase.strip().lower()
     # "one double bed for two guests" -> "one double bed"
     phrase = re.sub(r'\s+for\s+[\w-]+\s+guests?$', '', phrase).strip()
+    phrase = re.sub(r'\s*\([\w-]+\s+places?\)$', '', phrase).strip()
     m = re.match(r'^(\w+)\s+(.*)$', phrase)
     count, kind = 1, phrase
     if m and m.group(1) in WORDNUM:
@@ -212,7 +225,8 @@ def parse_prose(text, max_guests, resort):
         return out
     flat = ' '.join(text.split())
 
-    m = re.search(r'Sleeping arrangement:\s*([^.;]+(?:;[^.]*)?)\.', flat, re.I)
+    m = (re.search(r'Sleeping arrangement:\s*([^.;]+(?:;[^.]*)?)\.', flat, re.I)
+         or re.search(r'\bBeds:\s*([^.;]+)\.', flat, re.I))
     if m:
         seg = re.split(r';', m.group(1))[0]
         for part in re.split(r',| and ', seg):
@@ -225,7 +239,18 @@ def parse_prose(text, max_guests, resort):
             out['features'].append(label)
 
     n = max_guests or 0
-    out['headline'] = f'סטודיו עם מרפסת ב{"טין" if resort == "Tignes" else "ואל טורנס"}' + (f', עד {n} אנשים' if n else '')
+    place = 'טין' if resort == 'Tignes' else 'ואל טורנס'
+    if re.search(r'\bstudio\b', flat, re.I):
+        kind = 'סטודיו עם מרפסת' if re.search(r'\bbalcony\b', flat, re.I) else 'סטודיו'
+    elif re.search(r'\bduplex\b', flat, re.I):
+        kind = 'דופלקס'
+    else:
+        kind = 'דירה'
+    m_size = re.search(r'(\d+)\s*m²', flat)
+    out['headline'] = (f'{kind} של {m_size.group(1)} מ״ר ב{place}' if m_size else f'{kind} ב{place}')
+    if re.search(r'ski[- ]in\s*/\s*ski[- ]out', flat, re.I):
+        out['headline'] += ' עם גישה ישירה למסלולים (Ski-in / Ski-out)'
+    out['headline'] += f', עד {n} אנשים' if n else ''
     if n >= 4:
         out['perfectFor'] = f'משפחה או עד {n} חברים'
     elif n == 2:

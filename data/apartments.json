@@ -4738,31 +4738,54 @@
   "name": "Cusco D1",
   "code": "C-D1",
   "publicName": "Val Thorens - Ski In/Out - 5 Guests Flat (C-D1)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 4,
   "bathrooms": 1,
   "maxGuests": 5,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
   "headline": "",
   "perfectFor": "",
   "features": [],
   "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "extras": [
+   "TRUE SKI-IN / SKI-OUT — DIRECTLY ON THE PISTES.",
+   "Step straight from Résidence Cusco onto the slopes and ski back to the residence (subject to snow and piste opening).",
+   "25 m² ground-floor apartment for up to 5 guests. Equipped kitchen, heating, hot water, TV and mountain views; ski rental nearby.",
+   "Beds: 2 single beds, 1 pull-out bed and 1 bunk bed (2 places).",
+   "Please note: bed linen and towels are not included (available for €30 per guest)."
+  ],
+  "summary": "TRUE SKI-IN / SKI-OUT — DIRECTLY ON THE PISTES.\nStep straight from Résidence Cusco onto the slopes and ski back to the residence (subject to snow and piste opening).\n25 m² ground-floor apartment for up to 5 guests. Equipped kitchen, heating, hot water, TV and mountain views; ski rental nearby.\nBeds: 2 single beds, 1 pull-out bed and 1 bunk bed (2 places).\nPlease note: bed linen and towels are not included (available for €30 per guest).",
+  "amenities": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_HEATING",
+   "HAS_TV",
+   "HAS_DISHWASHER",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_FRIDGE",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_DINING_TABLE",
+   "HAS_MOUNTAIN",
+   "HAS_KITCHENETTE",
+   "HAS_KITCHEN",
+   "HAS_HOT_WATER"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_DISHWASHER",
+   "HAS_TV"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -4770,25 +4793,123 @@
   "photos": [
    {
     "file": "images/cusco-d1/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8899695c-f1ba-4e93-be8d-6608ac69fbeb",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8899695c-f1ba-4e93-be8d-6608ac69fbeb",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/4991128f-cc10-4ddd-bd8e-b919111ec74c",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b2251d11-7885-4845-af45-83105baedffb",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-d1/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/44ba7b96-1e9a-44ae-84a6-f7c328337775",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/139883a2-7ec2-4887-9b7b-2c6f347088e6",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/9ac4051e-f98e-4f8a-b2bd-d3979e77ca44",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/4a3a3fa5-4692-4e1a-8bb2-09167dbee1a1",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/9abe188a-cbd5-46b7-9cf7-8d76b9d976bb",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/31b2699c-d317-4953-822e-c1f1049dd7e7",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1350e42a-7087-4ec3-bf5e-fb9e030ec220",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7f225dc9-fb03-4dc8-b8ba-5754287bcf5d",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5c140ebd-0a91-4ed2-95e7-7ae7f23890b3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1e5352c8-4e11-4b16-85a5-229106dbfcee",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e3bbca5c-c76b-48d8-afbb-d07764ac6185",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/75cca7a7-075f-49f5-ab14-517cb37f3359",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/86cd2152-3f70-4dff-9a79-984a84459608",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8e809362-ddbc-45d6-8e1e-d70b4c14c65e",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/71f01847-d6b8-4d31-8f3d-8e7935b9a8d8",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a8822e9c-dd85-4895-b488-4a8254d11484",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d02b8aaf-6a0f-4a51-abc1-90ef20bde20c",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/77420177-c9ea-465f-9138-f1e1c9ff411f",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c875f202-93b3-4a4e-8fd9-b4dd3f928351",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/cb664f3e-619b-4960-acac-0aec0677d8bb",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-d1/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/dc746366-1339-4c5b-b384-a1843e2404cd",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/329b3be4-5920-4d09-9750-7af3c856e43b",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-d1/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e8440a71-826d-46af-9daf-5729283f49fe",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e937b257-fe6a-45a0-87d6-6b895b93fcef",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d1/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/07269816-4e28-48b5-bac6-2d8dd589c997",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ae1ba742-898f-4258-8779-dbcd5e3b0184",
+    "caption": "Kitchen storage"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 5 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
+  "headlineHe": "דירה של 25 מ״ר בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים",
+  "perfectForHe": "משפחה או עד 5 חברים",
+  "bedSpecHe": [
+   "2 מיטות יחיד",
+   "מיטה נשלפת",
+   "מיטת קומתיים"
+  ],
+  "featuresHe": [
+   "נוף להרים",
+   "מטבח מאובזר",
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "השכרת ציוד סקי בקרבת מקום",
+   "חימום",
+   "מים חמים",
+   "קומת קרקע",
+   "טלוויזיה"
+  ],
   "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 5 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה של 25 מ״ר בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים\n\nמתאים ל: משפחה או עד 5 חברים\n\n• נוף להרים\n• מטבח מאובזר\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• השכרת ציוד סקי בקרבת מקום\n• חימום\n• מים חמים\n• קומת קרקע\n• טלוויזיה\n\nסידור מיטות:\n• 2 מיטות יחיד\n• מיטה נשלפת\n• מיטת קומתיים",
+  "score": 7.0,
+  "scoreParts": [
+   "מצב הדירה 2/5 → +6",
+   "רק ספות/קומתיים 0",
+   "5.0 מ״ר לאדם 0",
+   "בלי מרפסת 0",
+   "מדיח +0.5",
+   "טלוויזיה +0.5"
+  ],
+  "condition": 2,
+  "conditionNote": "מיושנת: שטיח כחול מנוקד, ריהוט ישן, מטבח ירוק. קומת קרקע עם גישה ישירה למסלול — זה היתרון שלה",
+  "price": null,
+  "tier": "yellow"
  },
  {
   "id": "cusco-d2",
@@ -4796,31 +4917,52 @@
   "name": "Cusco D2",
   "code": "C-D2",
   "publicName": "Val Thorens - Ski In/Out - 5 Guests Flat (C-D2)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 4,
   "bathrooms": 1,
   "maxGuests": 5,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
   "headline": "",
   "perfectFor": "",
   "features": [],
   "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "extras": [
+   "TRUE SKI-IN / SKI-OUT — DIRECTLY ON THE PISTES.",
+   "Step straight from Résidence Cusco onto the slopes and ski back to the residence (subject to snow and piste opening).",
+   "25 m² ground-floor apartment for up to 5 guests. Equipped kitchen, heating, hot water and mountain views; ski rental nearby.",
+   "Beds: 2 single beds, 1 pull-out bed and 1 bunk bed (2 places).",
+   "Please note: bed linen and towels are not included (available for €30 per guest)."
+  ],
+  "summary": "TRUE SKI-IN / SKI-OUT — DIRECTLY ON THE PISTES.\nStep straight from Résidence Cusco onto the slopes and ski back to the residence (subject to snow and piste opening).\n25 m² ground-floor apartment for up to 5 guests. Equipped kitchen, heating, hot water and mountain views; ski rental nearby.\nBeds: 2 single beds, 1 pull-out bed and 1 bunk bed (2 places).\nPlease note: bed linen and towels are not included (available for €30 per guest).",
+  "amenities": [
+   "HAS_DINING_TABLE",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_KITCHENETTE",
+   "HAS_HOT_WATER",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_FRIDGE",
+   "HAS_HEATING",
+   "HAS_MOUNTAIN",
+   "HAS_KITCHEN",
+   "HAS_DISHWASHER"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_DISHWASHER"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -4828,25 +4970,116 @@
   "photos": [
    {
     "file": "images/cusco-d2/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/59d3814d-b209-4b56-aad6-1d6878604bd1",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/59d3814d-b209-4b56-aad6-1d6878604bd1",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/761d21a6-ff0f-4a76-88a8-ae7b2cb0723b",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/298adb6c-f0fc-4f37-8687-0ca66fd9c11d",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a3e3ef1b-95d9-4875-bc69-92cd49e115e3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/84d4f0be-2748-4326-a74e-34782ae93ada",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ee3ebc50-c7d1-4f65-894d-45429ca91cf1",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/11cfb3ed-e519-41a8-96de-959e3d0266c6",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/66ed21cd-ec1a-4bd8-9646-fcd442c372ae",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8bd16ad7-913c-4f1a-9504-724de7fcc708",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e1d7df22-2c2a-4d0b-8816-3996af0be81f",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/311fc44e-b92b-4d6a-8b3c-7bad1f26f5e3",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/cb4010af-ac4e-4d53-9b5a-0936126c76b9",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/30c4fe2f-2263-4b0b-bf5d-b93d29d24809",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/fa085a08-6fd9-4e37-be0b-014d7a4b0cd1",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d5cc4bbd-e526-4b8f-914c-491953452a39",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5a0229b1-e94b-4ff0-99c5-cde95c7ddaa8",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/04232de2-685e-4c4b-bb71-a2b5d8317fcc",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2d4c021d-ad70-41bb-bc5f-58b38a00ef1e",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5009cc55-15ca-4ed0-beb7-65688ff34ae6",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/854b4ad0-7f1c-42a1-a42b-40533a3b3f35",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1650b1bd-235e-4ae2-acd7-dbdebd4eefb8",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f89b8952-59d1-41eb-90c2-c4bed7bfd288",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b247f73e-6bf7-4243-92a3-a0932917ebe2",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-d2/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/6ce5ae69-f7a7-42b8-84fa-45d16a08ed8f",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ed6d2955-7c9c-4226-ae4d-f2f90a3251f6",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-d2/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2ba0eabb-f8c7-49b7-a16c-2873066659fa",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b52a8fc8-92ee-47bc-b90f-7ceec3804185",
+    "caption": "Kitchen storage"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 5 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
+  "headlineHe": "דירה של 25 מ״ר בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים",
+  "perfectForHe": "משפחה או עד 5 חברים",
+  "bedSpecHe": [
+   "2 מיטות יחיד",
+   "מיטה נשלפת",
+   "מיטת קומתיים"
+  ],
+  "featuresHe": [
+   "נוף להרים",
+   "מטבח מאובזר",
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "השכרת ציוד סקי בקרבת מקום",
+   "חימום",
+   "מים חמים",
+   "קומת קרקע"
+  ],
   "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 5 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה של 25 מ״ר בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים\n\nמתאים ל: משפחה או עד 5 חברים\n\n• נוף להרים\n• מטבח מאובזר\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• השכרת ציוד סקי בקרבת מקום\n• חימום\n• מים חמים\n• קומת קרקע\n\nסידור מיטות:\n• 2 מיטות יחיד\n• מיטה נשלפת\n• מיטת קומתיים",
+  "score": 6.5,
+  "scoreParts": [
+   "מצב הדירה 2/5 → +6",
+   "רק ספות/קומתיים 0",
+   "5.0 מ״ר לאדם 0",
+   "בלי מרפסת 0",
+   "מדיח +0.5",
+   "בלי טלוויזיה 0"
+  ],
+  "condition": 2,
+  "conditionNote": "מיושנת כמו D1: שטיח כחול, מטבח ירוק, אמבטיה בחיפוי עץ. קומת קרקע, ski-in/out ישיר",
+  "price": null,
+  "tier": "yellow"
  },
  {
   "id": "cusco-e15",
@@ -4854,31 +5087,63 @@
   "name": "Cusco E15",
   "code": "C-E15",
   "publicName": "Val Thorens - Ski In/Out - 4 Guests Flat (C-E15)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 3,
   "bathrooms": 1,
   "maxGuests": 4,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Apartment in Val Thorens (up to 4 people).",
+  "perfectFor": "Family (1-3 kids) or 2-4 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 4 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Terrace with mountain views.",
+   "Ski rental store nearby.",
+   "TV included."
+  ],
+  "bedSpec": [
+   "2 Sofa Bed(2)",
+   "1 Bunk Bed(2)"
+  ],
+  "extras": [
+   "Please note: bed linen and towels are not included (available for €30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Apartment in Val Thorens (up to 4 people).\n\nPerfect for:  Family (1-3 kids) or 2-4 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 4 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Terrace with mountain views.\n* Ski rental store nearby.\n* TV included.\n\nPlease note: bed linen and towels are not included (available for €30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n2 Sofa Bed(2)\n1 Bunk Bed(2)",
+  "amenities": [
+   "HAS_HEATING",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_KITCHENETTE",
+   "HAS_TV",
+   "HAS_DINING_TABLE",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_FRIDGE",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_MOUNTAIN",
+   "HAS_HOT_WATER",
+   "HAS_KITCHEN",
+   "HAS_DISHWASHER"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_DISHWASHER",
+   "HAS_TV"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -4886,25 +5151,94 @@
   "photos": [
    {
     "file": "images/cusco-e15/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7ccca865-a8cf-4a9f-9b08-027cd70eb410",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7ccca865-a8cf-4a9f-9b08-027cd70eb410",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2776e635-73de-4f1b-8c58-84b074efc830",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2f05370f-0f78-48a4-8fab-5ded7fa7ceed",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/606585a8-1a57-4bf4-b2d0-fdca05a496c7",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c5201107-ff48-496d-94f6-e13d36a92466",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a4c4d1f9-a905-4617-b9fd-91f9f06b3c76",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e4fada25-108a-4c4e-86dc-8ad21b956817",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/dc0a3aa5-e800-4322-9c63-6065c07a9a8d",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f50d9606-43b4-4525-8a37-745046ed3eeb",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3f7c9bb5-74f3-489d-9088-84b646f5d600",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/37b5861f-f66c-41aa-8e9c-9c017646dd13",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/4341c7b7-0463-47fa-966d-df0ef83e867c",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/58453921-065b-4d75-b34a-6bf0a17423bb",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/0eae2020-774c-4e38-a230-ef6bf1351710",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/cf1a16b4-94fd-4a21-b6bc-5e9fe8d0d810",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2837133b-1bfd-452f-87a5-a32903270f40",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/91062b56-f4f1-453d-be31-c569fa02a34f",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-e15/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/6a21060e-63cd-4343-9d66-06c05dc0fc4c",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/0e50de9f-4c68-4e86-9a69-33d36b4929f6",
+    "caption": "Balcony view over the snowy ski slopes"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 4 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 4 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 4 אנשים",
+  "perfectForHe": "משפחה (1–3 ילדים) או 2–4 חברים",
+  "bedSpecHe": [
+   "2 ספות נפתחות (ל-2)",
+   "מיטת קומתיים (ל-2)"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 4 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "טרסה עם נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום",
+   "טלוויזיה"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 4 אנשים\n\nמתאים ל: משפחה (1–3 ילדים) או 2–4 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 4 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• טרסה עם נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n• טלוויזיה\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• 2 ספות נפתחות (ל-2)\n• מיטת קומתיים (ל-2)",
+  "score": 11.0,
+  "scoreParts": [
+   "מצב הדירה 3.5/5 → +10.5",
+   "רק ספות/קומתיים 0",
+   "2 ספות נפתחות −1",
+   "6.2 מ״ר לאדם 0",
+   "מרפסת +0.5",
+   "מדיח +0.5",
+   "טלוויזיה +0.5"
+  ],
+  "condition": 3.5,
+  "conditionNote": "מרוענן: פרקט בהיר, ריהוט מודרני, מטבח כתום מסודר. רק 9 תמונות באתר",
+  "price": null,
+  "tier": "orange"
  },
  {
   "id": "cusco-e18",
@@ -5485,31 +5819,63 @@
   "name": "Cusco F3",
   "code": "C-F3",
   "publicName": "Val Thorens - Ski In/Out - 4 Guests Flat (C-F3)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 23,
   "bedrooms": 1,
   "beds": 2,
   "bathrooms": 1,
   "maxGuests": 4,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Apartment in Val Thorens (up to 4 people).",
+  "perfectFor": "Family (1-3 kids) or 2-4 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 4 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Balcony with mountain views.",
+   "Ski rental store nearby.",
+   "TV included."
+  ],
+  "bedSpec": [
+   "1 Sofa Bed(2)",
+   "1 Bunk Bed(2)"
+  ],
+  "extras": [
+   "Please note: bed linen and towels are not included (available for €30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Apartment in Val Thorens (up to 4 people).\n\nPerfect for:  Family (1-3 kids) or 2-4 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 4 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Balcony with mountain views.\n* Ski rental store nearby.\n* TV included.\n\nPlease note: bed linen and towels are not included (available for €30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n1 Sofa Bed(2)\n1 Bunk Bed(2)",
+  "amenities": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_KITCHENETTE",
+   "HAS_HEATING",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_DINING_TABLE",
+   "HAS_KITCHEN",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_HOT_WATER",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_FRIDGE",
+   "HAS_MOUNTAIN",
+   "HAS_TV",
+   "HAS_DISHWASHER"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_DISHWASHER",
+   "HAS_TV"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -5517,25 +5883,171 @@
   "photos": [
    {
     "file": "images/cusco-f3/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/038577e9-a356-434a-9eff-682f2679e1ff",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/038577e9-a356-434a-9eff-682f2679e1ff",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c3b00469-0e84-41ec-baf9-3762ec216bbc",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/644c3c5c-377d-4d94-863f-7cefa7b8f30a",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-f3/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2bc91893-7662-47a4-97ba-d87efc6950da",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e456937e-cce8-48a2-8188-2358d3eeacec",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/43e0ff9b-8e91-4db8-8e88-d441fab7c87d",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/6436bbd4-9ff5-435f-b902-efa4b82683d4",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-f3/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3fe22439-e4bb-499e-8472-e96edda23301",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2d6bb160-106e-4967-b809-04360147fc95",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/313eb1e5-70ec-42a1-98a5-776ea509b6e6",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5f13e248-5dc7-4feb-8a90-a697cf822553",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/eace0391-a945-40b5-9377-742ff030dc1e",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7c78153e-bb51-496a-aa65-7b9547177942",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/48db1c81-e2a5-4dd4-8ffb-2256b3dc06b5",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/728ec5da-a3e5-443b-a237-14994b4a452b",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/952ed393-7be5-41cc-a82a-6b28e96c5cd3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/919077b5-ec58-48dd-8070-98df7f66df16",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ecde91a0-b231-44db-8e28-57d97ce61020",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/64b285e0-c184-4a0c-ac3b-87b1c47fd1f0",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d17d6cf4-1b8e-47cf-aab1-15f17d46e526",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f973c14f-169c-4081-8ea4-12e430799863",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ff52c0e6-5127-4b6c-ba76-44986ab083e1",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8143a51b-19a7-4a7a-86d8-bb37b72287c7",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/94fc4149-9008-4f7e-a6ad-b5b0e1998842",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/36cbe417-0509-4dfb-b993-3561f91968a4",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/9984670d-1e51-4a6f-9a8f-2844deb55082",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/206d9d0b-6497-4e02-8152-9658e02b150d",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-f3/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/734db70d-97b6-4bd4-a154-0b00032a3846",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/79a171bc-db64-494d-bb5e-c9a2e8005411",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/14.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/744ad15c-b82a-48ec-96f1-0d03d612a821",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7578e0f1-96c0-46f0-87af-0e845ce13e2a",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/15.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/29aa1584-3981-44c0-80f1-69c50a33d553",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/0301f593-7063-45a6-bba8-2762c88e8455",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/16.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/29bed88a-e440-4248-b4ce-1d550053b523",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c3194de1-23a0-4b02-9e0e-f3cfdf901962",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/17.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f1b20088-0fe2-476a-a20d-879027514169",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a7f64f8e-e2ac-4ed8-9b19-8190fe427483",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-f3/18.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/45099469-3323-4e73-a302-a9dca6392908",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/99da82e5-33dc-44ac-ba03-0131ea03d4af",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-f3/19.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f1c69015-3e48-4967-9492-e02a7d3ea6e9",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/84185b04-42b7-429b-8c88-5d3fb74c1512",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-f3/20.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/0f707124-41b1-49fb-8db2-47e9e6407879",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/844d9705-04d8-4c4f-9f02-7743e573a697",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-f3/21.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/de9317bc-a9cc-4468-9d5c-c7eb90fa8abe",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/da592107-d359-4e11-8925-ea732e02ffb3",
     "caption": ""
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 4 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 4 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 4 אנשים",
+  "perfectForHe": "משפחה (1–3 ילדים) או 2–4 חברים",
+  "bedSpecHe": [
+   "ספה נפתחת (ל-2)",
+   "מיטת קומתיים (ל-2)"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 4 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "מרפסת עם נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום",
+   "טלוויזיה"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 4 אנשים\n\nמתאים ל: משפחה (1–3 ילדים) או 2–4 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 4 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• מרפסת עם נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n• טלוויזיה\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• ספה נפתחת (ל-2)\n• מיטת קומתיים (ל-2)",
+  "score": 9.0,
+  "scoreParts": [
+   "מצב הדירה 2.5/5 → +7.5",
+   "רק ספות/קומתיים 0",
+   "5.8 מ״ר לאדם 0",
+   "מרפסת +0.5",
+   "מדיח +0.5",
+   "טלוויזיה +0.5"
+  ],
+  "condition": 2.5,
+  "conditionNote": "שטיח כהה וריהוט ישן, אבל נקייה ומסודרת עם חלון גדול ונוף. 22 תמונות — התיעוד הכי טוב מבין השמונה",
+  "price": null,
+  "tier": "yellow"
  },
  {
   "id": "cusco-f4",
@@ -5762,31 +6274,59 @@
   "name": "Cusco G19",
   "code": "C-G19",
   "publicName": "Val Thorens - Ski In/Out - 5 Guests Flat (C-G19)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 4,
   "bathrooms": 1,
   "maxGuests": 5,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).",
+  "perfectFor": "Family (1-4 kids) or 2-5 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 5 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Mountain views.",
+   "Ski rental store nearby."
+  ],
+  "bedSpec": [
+   "2 Single Bed",
+   "1 Pull-out Bed (under a single bed)",
+   "1 Bunk Bed(2)"
+  ],
+  "extras": [
+   "Please note: bed linen and towels are not included (available for €30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).\n\nPerfect for:  Family (1-4 kids) or 2-5 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 5 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Mountain views.\n* Ski rental store nearby.\n\nPlease note: bed linen and towels are not included (available for €30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n2 Single Bed\n1 Pull-out Bed (under a single bed)\n1 Bunk Bed(2)",
+  "amenities": [
+   "HAS_FRIDGE",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_KITCHEN",
+   "HAS_KITCHENETTE",
+   "HAS_HOT_WATER",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_DINING_TABLE",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_HEATING",
+   "HAS_DISHWASHER",
+   "HAS_MOUNTAIN"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_DISHWASHER"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -5794,25 +6334,129 @@
   "photos": [
    {
     "file": "images/cusco-g19/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/36c23b08-494e-4296-9e2e-0fe10b4f4856",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/36c23b08-494e-4296-9e2e-0fe10b4f4856",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e48b0dc4-8fcc-411e-a070-78d507c13cf3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b6efdfb7-ad5e-41b8-857c-4b3fae1cee02",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-g19/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/fc9e2c4f-3b98-451b-96dd-eafe72b5ce25",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/99a4491a-3814-4bec-8f2f-8fec68e6db71",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/09f008d1-99dc-4740-a0de-10d6a2b54eca",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/29e91639-dd72-41f4-adf3-d6ec720d2a93",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-g19/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/961ddcc9-c51c-4c5c-966c-8dbbee4d9373",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d4c86a07-2afc-4f71-83d6-cdda88ba69c1",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c0212d90-d821-477a-87bd-e4e8104214a0",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d8ee550d-6a15-4956-9b20-0f74124a11af",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/89d8fd39-d98a-46fa-905a-f360ca6c61ab",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/4da26f3e-c3b6-43f3-bcdb-c70f69821256",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/17a90cf3-66bb-4e24-be6c-b091ea5960e0",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/80b3fd0f-0f23-4573-b536-92572f8e5a5f",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/90570530-e66d-4c6c-890c-7c7d226cfab7",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3b246d04-53b1-4a2f-a940-380299be4101",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b06e222d-11cb-4e7a-b4a3-15037800d00a",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/77c3fce9-3526-4dae-b06b-3d34cfc17d18",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a15393ba-4058-4fc3-b6a0-ca7b77c85772",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a6b7f646-5968-4234-b21c-c7aa270ab335",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/44d801bf-06f2-4e11-be7c-7be1439f2e48",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1db60802-9e94-40a3-b8eb-fbcbc7cb2860",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g19/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f43add92-8f35-4422-9d0b-163a7e75a404",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/94ab5e9c-bcd0-401a-a256-4fb6fc5e9f03",
+    "caption": "Kitchen storage"
+   },
+   {
+    "file": "images/cusco-g19/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3035b62d-5bc3-4013-a516-763faad19db0",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/0cc6a676-913a-4343-b14b-b828a6d2db3a",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-g19/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/22f76f93-8b2f-4841-93d1-bfb920c05022",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d31517d3-60f8-46da-9e66-1814699c2a67",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-g19/14.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d95707bf-5819-4e7c-aba4-b47c5637f1c4",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/da892705-d06b-4f44-b2ce-c8422ae3ca49",
+    "caption": "Balcony view over the snowy ski slopes"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 5 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 5 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים",
+  "perfectForHe": "משפחה (1–4 ילדים) או 2–5 חברים",
+  "bedSpecHe": [
+   "2 מיטות יחיד",
+   "מיטה נשלפת (מתחת למיטת יחיד)",
+   "מיטת קומתיים (ל-2)"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 5 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים\n\nמתאים ל: משפחה (1–4 ילדים) או 2–5 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 5 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• 2 מיטות יחיד\n• מיטה נשלפת (מתחת למיטת יחיד)\n• מיטת קומתיים (ל-2)",
+  "score": 12.0,
+  "scoreParts": [
+   "מצב הדירה 3.5/5 → +10.5",
+   "מיטת יחיד אמיתית +1",
+   "5.0 מ״ר לאדם 0",
+   "בלי מרפסת 0",
+   "מדיח +0.5",
+   "בלי טלוויזיה 0"
+  ],
+  "condition": 3.5,
+  "conditionNote": "פרקט בהיר, ריהוט מרוענן, מטבח כתום מסודר, אמבטיה נקייה",
+  "price": null,
+  "tier": "orange"
  },
  {
   "id": "cusco-g20",
@@ -5820,31 +6464,61 @@
   "name": "Cusco G20",
   "code": "C-G20",
   "publicName": "Val Thorens - Ski In/Out - 5 Guests Flat (C-G20)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 4,
   "bathrooms": 1,
   "maxGuests": 5,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).",
+  "perfectFor": "Family (1-4 kids) or 2-5 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 5 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Balcony with mountain views.",
+   "Ski rental store nearby."
+  ],
+  "bedSpec": [
+   "2 Single Bed",
+   "1 Pull-out Bed (under a single bed)",
+   "1 Bunk Bed(2)"
+  ],
+  "extras": [
+   "Bed linen & towels not included (€30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).\n\nPerfect for:  Family (1-4 kids) or 2-5 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 5 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Balcony with mountain views.\n* Ski rental store nearby.\n\nBed linen & towels not included (€30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n2 Single Bed\n1 Pull-out Bed (under a single bed)\n1 Bunk Bed(2)",
+  "amenities": [
+   "HAS_FRIDGE",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_HOT_WATER",
+   "HAS_DINING_TABLE",
+   "HAS_KITCHENETTE",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_MOUNTAIN",
+   "HAS_DISHWASHER",
+   "HAS_HEATING",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_KITCHEN"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_DISHWASHER"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -5852,25 +6526,135 @@
   "photos": [
    {
     "file": "images/cusco-g20/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7528141f-99c9-425d-b947-69e91b723456",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7528141f-99c9-425d-b947-69e91b723456",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/be2d83e8-a9f8-4f21-bc1c-5155c47eddb2",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/2635fca9-a8f1-4b8b-b33c-8b7969328eb2",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/cusco-g20/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/38a264f3-70f3-4925-892e-db1b51336033",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/88aa2f98-891e-4b98-9834-9926ee8fd112",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e14d65be-724c-43ff-8eb8-55fe356f0ac1",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/893a05d1-868c-42cc-bf89-27da6d38d7d2",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f6fa1487-0467-43a6-94e1-f95f2f1ea891",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1b90171b-ef12-42b6-aa10-c612353f48b6",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/237c0f9e-1ee8-4501-89cd-6f950e8e39fd",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e931ff0d-216a-4f88-a3b5-267ec3799d8d",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d6b1a422-ce71-4647-bc6f-19b6fe7b2294",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/95276c44-f123-4d15-a42b-403fbb204283",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ef2a7e50-40ef-4ae9-93a6-d06d438531fe",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e0bf983c-d5e8-4d7e-8938-b640b5d179e1",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/20561db2-1c9c-40f4-a0b1-b24deaf7aad6",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/7cfa42be-0167-4936-be28-eb7dadd353df",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a28d3124-5680-47d5-a7d6-f46528d6a8dc",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/29331724-9377-44c4-b86b-5ab3dc02642f",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/fd16e8a9-65b5-4f47-9def-f0e08c8576bb",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b1586ab6-b922-4ac5-885e-2da834233324",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/517f5a83-37f7-4749-89c6-b9a7dc3862b8",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3f8513b0-06b1-4ae9-a0fb-66826729920c",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d5d6c6bf-ddf6-4de7-989c-6f4f7c076721",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/bbc1c033-8c5c-45c3-a2f6-c2f16b4b05bf",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-g20/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/745e3e8e-7fba-4fa5-90fe-de4a06fab476",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c713edb5-7621-46e5-b80e-026ebfb57b87",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-g20/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/58e314e8-3d06-4d49-8987-89dbf67a4117",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8581b1c6-5394-4e6f-a7e2-a1e92065bf9f",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-g20/14.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/402f97e5-7aad-4177-805e-7d67d974dbdd",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/fad7bc0e-1179-4bfb-abbb-b5e9851ab497",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-g20/15.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f4c55084-746b-4b1f-b558-7bcf735dbd25",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ce17dd8e-4cbd-4edb-a670-3f606dce79d3",
+    "caption": "Kitchen storage"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 5 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 5 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים",
+  "perfectForHe": "משפחה (1–4 ילדים) או 2–5 חברים",
+  "bedSpecHe": [
+   "2 מיטות יחיד",
+   "מיטה נשלפת (מתחת למיטת יחיד)",
+   "מיטת קומתיים (ל-2)"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 5 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "מרפסת עם נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים\n\nמתאים ל: משפחה (1–4 ילדים) או 2–5 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 5 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• מרפסת עם נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• 2 מיטות יחיד\n• מיטה נשלפת (מתחת למיטת יחיד)\n• מיטת קומתיים (ל-2)",
+  "score": 12.5,
+  "scoreParts": [
+   "מצב הדירה 3.5/5 → +10.5",
+   "מיטת יחיד אמיתית +1",
+   "5.0 מ״ר לאדם 0",
+   "מרפסת +0.5",
+   "מדיח +0.5",
+   "בלי טלוויזיה 0"
+  ],
+  "condition": 3.5,
+  "conditionNote": "זהה ל-G19 במצב ובסגנון — פרקט בהיר, ריהוט מרוענן, טלוויזיה גדולה",
+  "price": null,
+  "tier": "orange"
  },
  {
   "id": "cusco-h26",
@@ -6037,7 +6821,7 @@
   "condition": 3.5,
   "conditionNote": "סטנדרט מרוענן, מרפסת ישר על המסלול",
   "price": null,
-  "tier": "yellow"
+  "tier": "orange"
  },
  {
   "id": "cusco-i10",
@@ -6192,31 +6976,64 @@
   "name": "Cusco K14",
   "code": "C-K14",
   "publicName": "Val Thorens - Ski In/Out - 5 Guests Flat (C-K14)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Machu Pichu (Cusco)",
   "street": "599 Rue du Soleil",
   "address": "Résidence Cusco - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 25,
   "bedrooms": 1,
   "beds": 4,
   "bathrooms": 1,
   "maxGuests": 5,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).",
+  "perfectFor": "Family (1-4 kids) or 2-5 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 5 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Balcony with mountain views.",
+   "Ski rental store nearby.",
+   "TV included."
+  ],
+  "bedSpec": [
+   "2 Single Bed",
+   "1 Pull-out Bed (under a single bed)",
+   "1 Bunk Bed(2)"
+  ],
+  "extras": [
+   "Bed linen & towels not included (€30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Apartment in Val Thorens (up to 5 people).\n\nPerfect for:  Family (1-4 kids) or 2-5 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 5 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Balcony with mountain views.\n* Ski rental store nearby.\n* TV included.\n\nBed linen & towels not included (€30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n2 Single Bed\n1 Pull-out Bed (under a single bed)\n1 Bunk Bed(2)",
+  "amenities": [
+   "HAS_DINING_TABLE",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_MOUNTAIN",
+   "HAS_KITCHEN",
+   "HAS_TV",
+   "HAS_KITCHENETTE",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_FRIDGE",
+   "HAS_HOT_WATER",
+   "HAS_DISHWASHER",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_HEATING"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_DISHWASHER",
+   "HAS_TV"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -6224,25 +7041,124 @@
   "photos": [
    {
     "file": "images/cusco-k14/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/52aff24d-fb1f-464b-929d-27ef0a05253d",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/52aff24d-fb1f-464b-929d-27ef0a05253d",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/cfeeb1ad-e0a8-4e7c-82aa-ab73f1ef7792",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/bcfecad5-3339-4609-b8f7-9507f4d63879",
     "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/9bfdc727-01db-4336-aaad-b3077db0d39d",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e19f38c8-36c7-49aa-9ee8-d4d6c09cc016",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e6b9c841-dc41-4596-9cb5-8a6ec76eb641",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/54e8e06d-1df1-4c92-959b-cce8a520b96a",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/fdadfbfd-9d01-41df-90ea-d62041115282",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c5babe6f-a997-4ba6-b9ee-8cfe19fce9a0",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/dfe8a042-e677-4680-b527-f988189d8192",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1ab556c8-7f53-497b-9077-c647601915b9",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/19b5b93f-813d-43f4-827d-562fcc763821",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/eabeab70-d50b-4d32-8c85-4f40d17cf446",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/345157c0-2559-4648-8eaa-68e0145a58b1",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b7ac2e18-b854-4b05-8d50-be8f544eb6ad",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/26ad533e-a616-4650-97e8-3dd4cb35f66b",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/f6f0e791-b433-4a4b-97c3-b600aa5a9ced",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/02b53f6f-0cde-488d-9719-22c345b6eee3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/92a508f3-ab76-48d8-82f9-5a4bf7c7181d",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e1123418-07d6-4baa-ace0-0bafb1846089",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3aa1f18b-43c1-4cda-9cf5-e8f034d6703a",
+    "caption": ""
+   },
+   {
+    "file": "images/cusco-k14/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/bca19d76-6082-4c3d-a0ab-111f97107744",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/e21195f3-67c2-4b67-972f-610cbcc61699",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-k14/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/23ecc6de-d135-4d49-a2e7-5306705cc4ab",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d3c4c12d-4a94-41ae-85dc-5357303473c2",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-k14/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/6aacf110-2534-4f11-bd25-6800f3fec3aa",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/39d0d543-db55-41cd-ba0d-cb34383b0dee",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/cusco-k14/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/02c0bafa-15e3-4eae-8af4-649138a48089",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5b6978c7-0493-4bb0-959b-3e0f9b57ee19",
+    "caption": "Kitchen storage"
    }
   ],
   "updated": null,
-  "headlineHe": "דירה בואל טורנס, עד 5 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דירה בואל טורנס, עד 5 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים",
+  "perfectForHe": "משפחה (1–4 ילדים) או 2–5 חברים",
+  "bedSpecHe": [
+   "2 מיטות יחיד",
+   "מיטה נשלפת (מתחת למיטת יחיד)",
+   "מיטת קומתיים (ל-2)"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 5 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "מרפסת עם נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום",
+   "טלוויזיה"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דירה בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 5 אנשים\n\nמתאים ל: משפחה (1–4 ילדים) או 2–5 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 5 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• מרפסת עם נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n• טלוויזיה\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• 2 מיטות יחיד\n• מיטה נשלפת (מתחת למיטת יחיד)\n• מיטת קומתיים (ל-2)",
+  "score": 13.0,
+  "scoreParts": [
+   "מצב הדירה 3.5/5 → +10.5",
+   "מיטת יחיד אמיתית +1",
+   "5.0 מ״ר לאדם 0",
+   "מרפסת +0.5",
+   "מדיח +0.5",
+   "טלוויזיה +0.5"
+  ],
+  "condition": 3.5,
+  "conditionNote": "פרקט בהיר, ריהוט מרוענן, מרפסת עם נוף. דומה ל-G19/G20",
+  "price": null,
+  "tier": "orange"
  },
  {
   "id": "cusco-k4",
@@ -6411,31 +7327,65 @@
   "name": "Nazca C7",
   "code": "NZ-C7",
   "publicName": "Val Thorens - Ski In/Out - 8 Guests Duplex (NZ-C7)",
-  "dataPartial": true,
+  "dataPartial": false,
   "resort": "Val Thorens",
   "residence": "Nazca",
   "street": "599 Rue du Soleil",
   "address": "Résidence Nazca - Pierre et Vacances ,599 Rue du Soleil",
   "lat": 45.29689,
   "lng": 6.57585,
-  "sizeM2": null,
+  "sizeM2": 40,
   "bedrooms": 2,
   "beds": 6,
   "bathrooms": 2,
   "maxGuests": 8,
   "baseGuests": 1,
   "minStay": 2,
-  "checkInFrom": null,
-  "checkOutBy": null,
-  "checkInMethod": null,
-  "headline": "",
-  "perfectFor": "",
-  "features": [],
-  "bedSpec": [],
-  "extras": [],
-  "summary": "",
-  "amenities": [],
-  "highlights": [],
+  "checkInFrom": 16,
+  "checkOutBy": 11,
+  "checkInMethod": "Key box",
+  "headline": "Ski-in/Ski-out, Duplex Apartment in Val Thorens (up to 8 people).",
+  "perfectFor": "Family (2-6 kids) or 2-8 Friends",
+  "features": [
+   "Direct ski-in/ski-out access.",
+   "Accommodation for up to 8 guests.",
+   "Fully equipped kitchen.",
+   "Heating and hot water.",
+   "Balcony with mountain views.",
+   "Ski rental store nearby.",
+   "TV included."
+  ],
+  "bedSpec": [
+   "1 Double Bed(2)",
+   "1 Bunk Bed(2)",
+   "2 Single Bed",
+   "2 Pull-out Bed"
+  ],
+  "extras": [
+   "Bed linen & towels not included (€30 per guest)."
+  ],
+  "summary": "Ski-in/Ski-out, Duplex Apartment in Val Thorens (up to 8 people).\n\nPerfect for:  Family (2-6 kids) or 2-8 Friends\n\n* Direct ski-in/ski-out access.\n* Accommodation for up to 8 guests.\n* Fully equipped kitchen.\n* Heating and hot water.\n* Balcony with mountain views.\n* Ski rental store nearby.\n* TV included.\n\nBed linen & towels not included (€30 per guest).\n\nBook your stay for a simple and convenient mountain getaway!\n\nBed Specification:\n1 Double Bed(2)\n1 Bunk Bed(2)\n2 Single Bed\n2 Pull-out Bed",
+  "amenities": [
+   "HAS_KITCHENETTE",
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_FRIDGE",
+   "HAS_MICROWAVE_OVEN",
+   "HAS_MOUNTAIN_VIEW",
+   "HAS_DINING_TABLE",
+   "HAS_HEATING",
+   "HAS_TV",
+   "HAS_KITCHEN",
+   "HAS_MOUNTAIN",
+   "HAS_HOT_WATER",
+   "HAS_DISHWASHER"
+  ],
+  "highlights": [
+   "HAS_SKI_IN_SKI_OUT",
+   "HAS_BALCONY_TERRASSE",
+   "HAS_DISHWASHER",
+   "HAS_TV"
+  ],
   "isActive": true,
   "publicListed": false,
   "webLink": null,
@@ -6443,25 +7393,156 @@
   "photos": [
    {
     "file": "images/nazca-c7/00.jpg",
-    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c99d6358-8aa1-4dac-a76a-94c67710dccf",
-    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c99d6358-8aa1-4dac-a76a-94c67710dccf",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a85f6143-3eed-4865-a922-88a579114fe4",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/068aea71-470e-40ea-8dd7-0ba694deeaf6",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/01.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/866fd53f-7f42-4a69-8f3c-c25219a20f8e",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/3ec97eb0-1da9-473f-ab2c-1c721af87950",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/nazca-c7/02.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/268db4dd-7972-4dc3-9d95-979ecf062c6b",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5a666be0-b175-49c5-83bf-a67f90a2823f",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/nazca-c7/03.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/84718db4-d686-45e8-bf02-261e7ed96916",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/9ace9aef-cd34-4779-9f5c-d4b0e51ae523",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/04.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8de1bf52-29be-44d0-a6da-69c7b0f9a6d2",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/5faa3b88-ab39-408d-a135-941442bfd2ca",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/nazca-c7/05.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d51e0732-0e08-47fc-904b-59a65c433352",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/cadbaf03-ad50-4c1b-bc1c-3e8afd321a9a",
+    "caption": "Balcony view over the snowy ski slopes"
+   },
+   {
+    "file": "images/nazca-c7/06.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/b80bb5ad-37c8-4eb4-b94d-e8c9ee9919ab",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ab0474a4-97bd-4ffb-b7a6-1ec4335c20dc",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/07.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/dc57aa24-22c1-417d-87fa-7b9e8fe1c5f3",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/322c7558-64dd-4c2d-a746-99e02de15ed6",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/08.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/44a084ce-df58-48ee-b1a3-4dd01f991a58",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/01e2394f-4447-4f52-9020-8ccde4eea025",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/09.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/39551306-ab45-4919-96aa-6a99b3a8cbba",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/21b05f77-e06e-454b-89be-b5323808c619",
+    "caption": "Living area with winter view of the snowy slopes"
+   },
+   {
+    "file": "images/nazca-c7/10.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/245da9a3-be66-4a28-871c-6094a3ce7beb",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d63afa75-de16-4d26-914a-7abb0c773919",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/11.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/18848013-479f-442b-a02b-13d47de655cd",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/6d8cbc07-c512-4672-85ac-0eca800aff3e",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/12.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/34ef9a31-33f0-4559-8207-dab2ccc58024",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/53794b49-d479-49c7-b2b6-9dc8e639d277",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/13.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d9855cf0-7d83-4708-940e-1c3f1f9be74f",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/291b2e29-6f65-4b90-8361-7186f8f39d72",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/14.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/d1679eb8-e6ee-4f23-b11c-92262ca70a56",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/a2ec2653-c21f-4aa5-92a2-167e36edc20a",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/15.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/8930f7b9-49ee-472c-a12f-bd4dd3aa2f1b",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/82f4a7f8-1463-4572-88c5-51a5b536b59d",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/16.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/ee872536-b785-4116-9dee-a208e4042fab",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/1751cbcb-89d2-4496-a403-cbee01debe33",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/17.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/76ae6101-6a37-4e79-ab89-578e196f2a8f",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/24236dfb-bf64-4507-b830-13a5e354ade3",
+    "caption": ""
+   },
+   {
+    "file": "images/nazca-c7/18.jpg",
+    "url": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/be183496-6e97-44d7-83d6-fbdb18f9fe5c",
+    "large": "https://img.hfcdn.net/c3fc415b-c6b6-4268-b638-82ba8b5432f3/photos/c1aa55bf-875f-4650-b146-45e1ad57b46c",
     "caption": ""
    }
   ],
   "updated": null,
-  "headlineHe": "דופלקס בואל טורנס, עד 8 אנשים",
-  "perfectForHe": "",
-  "bedSpecHe": [],
-  "featuresHe": [],
-  "extrasHe": [],
-  "checkInMethodHe": null,
-  "descriptionHe": "דופלקס בואל טורנס, עד 8 אנשים\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.",
-  "score": null,
-  "scoreParts": [],
-  "tier": "unrated",
-  "condition": null,
-  "conditionNote": null,
-  "price": null
+  "headlineHe": "דופלקס בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 8 אנשים",
+  "perfectForHe": "משפחה (2–6 ילדים) או 2–8 חברים",
+  "bedSpecHe": [
+   "מיטה זוגית (ל-2)",
+   "מיטת קומתיים (ל-2)",
+   "2 מיטות יחיד",
+   "2 מיטות נשלפות"
+  ],
+  "featuresHe": [
+   "גישה ישירה למסלולים (Ski-in / Ski-out)",
+   "עד 8 אורחים",
+   "מטבח מאובזר במלואו",
+   "חימום ומים חמים",
+   "מרפסת עם נוף להרים",
+   "חנות השכרת ציוד סקי בקרבת מקום",
+   "טלוויזיה"
+  ],
+  "extrasHe": [
+   "מצעים ומגבות: 30€ לאורח (אופציונלי)"
+  ],
+  "checkInMethodHe": "תיבת מפתחות (קוד)",
+  "descriptionHe": "דופלקס בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out), עד 8 אנשים\n\nמתאים ל: משפחה (2–6 ילדים) או 2–8 חברים\n\n• גישה ישירה למסלולים (Ski-in / Ski-out)\n• עד 8 אורחים\n• מטבח מאובזר במלואו\n• חימום ומים חמים\n• מרפסת עם נוף להרים\n• חנות השכרת ציוד סקי בקרבת מקום\n• טלוויזיה\n\nמצעים ומגבות: 30€ לאורח (אופציונלי)\n\nסידור מיטות:\n• מיטה זוגית (ל-2)\n• מיטת קומתיים (ל-2)\n• 2 מיטות יחיד\n• 2 מיטות נשלפות",
+  "score": 14.5,
+  "scoreParts": [
+   "מצב הדירה 4/5 → +12",
+   "מיטה זוגית אמיתית +2",
+   "2 ספות נפתחות −1",
+   "5.0 מ״ר לאדם 0",
+   "מרפסת +0.5",
+   "מדיח +0.5",
+   "טלוויזיה +0.5"
+  ],
+  "condition": 4,
+  "conditionNote": "דופלקס 40 מ״ר, 2 חדרי שינה ו-2 מקלחות — הגדולה ביותר אחרי Sérac K10. נקייה ומרווחת, 2 מרפסות עם נוף למסלול, מיטה זוגית אמיתית. ריהוט פונקציונלי ולא מפואר",
+  "price": null,
+  "tier": "green"
  },
  {
   "id": "altineige-203",
