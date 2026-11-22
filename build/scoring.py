@@ -74,15 +74,25 @@ def score(a, manual):
 
 
 def apply(apartments, manual):
+    # Units with no listing data can't be scored fairly — a missing amenity list
+    # would read as a bad apartment rather than a missing one.
     for a in apartments:
+        if a.get('dataPartial'):
+            a['score'], a['scoreParts'], a['tier'] = None, [], 'unrated'
+            m = manual.get(a['id'], {})
+            a['condition'] = m.get('condition')
+            a['conditionNote'] = m.get('conditionNote')
+            a['price'] = m.get('price')
+    rated = [a for a in apartments if not a.get('dataPartial')]
+    for a in rated:
         a['score'], a['scoreParts'] = score(a, manual)
         m = manual.get(a['id'], {})
         a['condition'] = m.get('condition')
         a['conditionNote'] = m.get('conditionNote')
         a['price'] = m.get('price')
-    scores = sorted(a['score'] for a in apartments)
+    scores = sorted(a['score'] for a in rated)
     lo = scores[len(scores) // 3]
     hi = scores[(2 * len(scores)) // 3]
-    for a in apartments:
+    for a in rated:
         a['tier'] = 'green' if a['score'] >= hi else ('orange' if a['score'] >= lo else 'yellow')
     return lo, hi

@@ -13,7 +13,7 @@
   :root{
     --bg:#f4f6f9; --panel:#fff; --line:#e3e7ee; --text:#1c2430; --muted:#66707f;
     --brand:#30b48d; --brand-dk:#22936f; --chip:#eef3f8; --chip-on:#dff5ec; --warn:#c7791b;
-    --t-green:#2e9e5b; --t-orange:#e8891d; --t-yellow:#f2cf3a;
+    --t-green:#2e9e5b; --t-orange:#e8891d; --t-yellow:#f2cf3a; --t-unrated:#9aa5b1;
     --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.06);
   }
   *{box-sizing:border-box}
@@ -59,9 +59,9 @@
   .tag.off{background:#fbecd9;color:var(--warn)}
   .cmp{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:12px}
   .cmp.on{background:var(--brand);color:#fff;border-color:var(--brand)}
-  .card.t-green{border-top:4px solid var(--t-green)} .card.t-orange{border-top:4px solid var(--t-orange)} .card.t-yellow{border-top:4px solid var(--t-yellow)}
+  .card.t-green{border-top:4px solid var(--t-green)} .card.t-orange{border-top:4px solid var(--t-orange)} .card.t-yellow{border-top:4px solid var(--t-yellow)} .card.t-unrated{border-top:4px dashed var(--t-unrated)}
   .tierb{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
-  .tierb.green{background:var(--t-green)} .tierb.orange{background:var(--t-orange)} .tierb.yellow{background:var(--t-yellow);color:#4a3b00}
+  .tierb.green{background:var(--t-green)} .tierb.orange{background:var(--t-orange)} .tierb.yellow{background:var(--t-yellow);color:#4a3b00} .tierb.unrated{background:var(--t-unrated)}
   .tierb small{font-weight:500;opacity:.9}
   .card .tierb{position:absolute;top:12px;right:10px}
   .chip.tg.on{background:#dff3e6;border-color:var(--t-green);color:#1e7a44}
@@ -217,7 +217,7 @@
   <div class="filters">
     <div class="fgroup"><label>אתר</label><span id="fResort"></span></div>
     <div class="fgroup"><label>דירוג</label>
-      <button class="chip tg" data-tier="green">🟢 ירוק</button><button class="chip to" data-tier="orange">🟠 כתום</button><button class="chip ty" data-tier="yellow">🟡 צהוב</button>
+      <button class="chip tg" data-tier="green">🟢 ירוק</button><button class="chip to" data-tier="orange">🟠 כתום</button><button class="chip ty" data-tier="yellow">🟡 צהוב</button><button class="chip" data-tier="unrated">⚪ טרם דורגה</button>
     </div>
     <div class="fgroup"><label>רזידנס</label><span id="fRes"></span></div>
     <div class="fgroup"><label>אורחים</label>
@@ -263,7 +263,7 @@
 <div class="overlay" id="ov"><div class="modal" id="modal"></div></div>
 <div class="overlay" id="ovC"><div class="modal"><div class="mhead"><h2>השוואה</h2><span class="sp"></span><button class="x" id="xC">✕</button></div><div class="cmpWrap" id="cmpBody"></div></div></div>
 
-<script src="data/apartments.js?v=6"></script>
+<script src="data/apartments.js?v=7"></script>
 <script src="track.js?v=1"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
@@ -333,7 +333,7 @@ function filtered(){
   });
   const s = state.sort;
   const cmpF = {
-    score:(x,y)=>(y.score-x.score)||x.name.localeCompare(y.name),
+    score:(x,y)=>((y.score??-1)-(x.score??-1))||x.name.localeCompare(y.name),
     residence:(x,y)=>x.residence.localeCompare(y.residence)||x.name.localeCompare(y.name),
     name:(x,y)=>x.name.localeCompare(y.name),
     guests:(x,y)=>(y.maxGuests-x.maxGuests)||x.name.localeCompare(y.name),
@@ -343,8 +343,8 @@ function filtered(){
   return r.sort(cmpF);
 }
 
-const TIER = {green:'ירוק', orange:'כתום', yellow:'צהוב'};
-const tierBadge = a=>`<span class="tierb ${a.tier}">${TIER[a.tier]} <small>${a.score}</small></span>`;
+const TIER = {green:'ירוק', orange:'כתום', yellow:'צהוב', unrated:'טרם דורגה'};
+const tierBadge = a=>`<span class="tierb ${a.tier}">${TIER[a.tier]}${a.score!=null?` <small>${a.score}</small>`:''}</span>`;
 
 /* ---------- render ---------- */
 function render(){
@@ -376,14 +376,14 @@ function renderGrid(list){
           <span class="fact">👥 <b>${a.maxGuests}</b> אורחים</span>
           <span class="fact">🛏 <b>${a.beds}</b> מיטות</span>
           <span class="fact">🚿 <b>${a.bathrooms}</b></span>
-          <span class="fact">📐 <b>${a.sizeM2}</b> מ״ר</span>
+          ${a.sizeM2?`<span class="fact">📐 <b>${a.sizeM2}</b> מ״ר</span>`:''}
           <span class="fact">📷 ${a.photos.length}</span>
           <span class="fact">🏠 מצב <b>${a.condition??'-'}</b>/5</span>
         </div>
         <div class="pf">${a.perfectForHe?'מתאים ל: '+a.perfectForHe:''}</div>
         <div class="tags">
           ${a.highlights.map(h=>`<span class="tag">${LABELS[h]}</span>`).join('')}
-          ${a.publicListed?'':'<span class="tag off">לא באתר</span>'}
+          ${a.dataPartial?'<span class="tag off">נתונים חלקיים</span>':(a.publicListed?'':'<span class="tag off">לא באתר</span>')}
         </div>
       </div>
     </div>`).join('');
@@ -551,8 +551,10 @@ function drawDetail(){
         <div class="thumbs" id="thumbs">${ph.map((p,i)=>`<img src="${p.file}" data-i="${i}" class="${i===idx?'on':''}" loading="lazy">`).join('')}</div>
       </div>
       <div class="info">
-        <h4>דירוג: ${TIER[a.tier]} · ${a.score} נקודות</h4>
-        <div class="breakdown">${a.scoreParts.map(p=>`<span>${p}</span>`).join('')}</div>
+        ${a.dataPartial
+          ? `<h4>דירוג</h4><div class="share" style="background:#fff8e6;border-color:#f0dca8">הדירה קיימת ב-Hostfully אבל <b>עדיין לא פורסמה באתר ההזמנות</b>, ולכן אין לנו ממנו תמונות, תיאור, ציוד או גודל — רק תמונת שער ונתוני הנכס. אחרי שתפורסם, רענון רגיל ימשוך הכל ויחשב דירוג.</div>`
+          : `<h4>דירוג: ${TIER[a.tier]} · ${a.score} נקודות</h4>
+        <div class="breakdown">${a.scoreParts.map(p=>`<span>${p}</span>`).join('')}</div>`}
         ${a.conditionNote?`<div class="hint" style="margin-top:6px">מצב הדירה (${a.condition}/5): ${a.conditionNote}</div>`:''}
         <h4>מחיר</h4><div>${a.price||'<span class="hint">לא הוזן — data/manual.json</span>'}</div>
         <h4>שליחת תמונות ללקוח</h4>
@@ -572,9 +574,9 @@ function drawDetail(){
           <div><small>מיטות</small><b>${a.beds}</b></div>
           <div><small>חדרי שינה</small><b>${a.bedrooms}</b></div>
           <div><small>מקלחות</small><b>${a.bathrooms}</b></div>
-          <div><small>גודל</small><b>${a.sizeM2} מ״ר</b></div>
+          <div><small>גודל</small><b>${a.sizeM2?a.sizeM2+' מ״ר':'—'}</b></div>
           <div><small>מינימום לילות</small><b>${a.minStay??'-'}</b></div>
-          <div><small>צ׳ק-אין / אאוט</small><b>${a.checkInFrom??'-'}:00 / ${a.checkOutBy??'-'}:00</b></div>
+          <div><small>צ׳ק-אין / אאוט</small><b>${a.checkInFrom!=null&&a.checkOutBy!=null?`${a.checkInFrom}:00 / ${a.checkOutBy}:00`:'—'}</b></div>
           <div><small>שיטת כניסה</small><b style="font-size:13px">${a.checkInMethodHe||'-'}</b></div>
         </div>
         <h4>מתאים ל</h4><div>${a.perfectForHe||'-'}</div>

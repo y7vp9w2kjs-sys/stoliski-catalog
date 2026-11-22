@@ -251,3 +251,23 @@ def apply_prose(a, raw_summary):
         parts.append('סידור מיטות:\n' + '\n'.join('• ' + b for b in a['bedSpecHe']))
     a['descriptionHe'] = '\n\n'.join(p for p in parts if p)
     return a
+
+
+def apply_bare(a):
+    """For records with no listing text at all (unpublished units).
+
+    Everything here comes from the structured fields, so nothing is invented.
+    """
+    resort = 'טין' if a.get('resort') == 'Tignes' else 'ואל טורנס'
+    kind = 'דופלקס' if 'duplex' in (a.get('publicName') or '').lower() else 'דירה'
+    n = a.get('maxGuests')
+    a['headlineHe'] = f'{kind} ב{resort}' + (f', עד {n} אנשים' if n else '')
+    a['perfectForHe'] = ''
+    a['bedSpecHe'] = []
+    a['featuresHe'] = []
+    a['extrasHe'] = []
+    a['checkInMethodHe'] = CHECKIN.get(a.get('checkInMethod') or '', a.get('checkInMethod'))
+    a['descriptionHe'] = (a['headlineHe'] +
+                          '\n\nהדירה עדיין לא פורסמה באתר ההזמנות, ולכן אין לנו ממנו '
+                          'תמונות, תיאור או רשימת ציוד. הנתונים כאן מגיעים מכרטיס הנכס ב-Hostfully.')
+    return a

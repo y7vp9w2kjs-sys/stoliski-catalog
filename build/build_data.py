@@ -63,6 +63,7 @@ RESIDENCE_MAP = [
     ('Cime', 'Cimes de Caron'),
     ('Altineige', "Odalys L'Altineige"),
     ('Arcelle', "L'Arcelle"),
+    ('Nazca', 'Nazca'),
     ('Cusco', 'Machu Pichu (Cusco)'),
     ('Machu', 'Machu Pichu'),
     ('Pichu', 'Machu Pichu'),
@@ -212,6 +213,7 @@ def normalize(raw):
             'name': list_name,
             'code': code,
             'publicName': public_name,
+            'dataPartial': bool(o.get('dataPartial')),
             'resort': resort_for(list_name, addr.get('city')),
             'residence': residence_for(list_name, addr.get('address2')),
             'street': (addr.get('address') or '').split(',')[-1].strip(),
@@ -304,8 +306,10 @@ def main():
         # Val Thorens listings use a bullet format; Tignes ones are prose.
         if a['features'] or a['bedSpec']:
             hebrew.apply(a)
-        else:
+        elif a['summary']:
             hebrew.apply_prose(a, a['summary'])
+        else:
+            hebrew.apply_bare(a)
     for kind, text in sorted(hebrew.UNKNOWN):
         print(f'UNTRANSLATED {kind}: {text!r}')
     manual_path = os.path.join(DATA_DIR, 'manual.json')

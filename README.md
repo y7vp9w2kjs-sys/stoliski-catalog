@@ -29,6 +29,7 @@ build/raw/            הייצוא הגולמי מ-Hostfully
 
 ```bash
 python3 build/fetch_public.py
+python3 build/fetch_unpublished.py
 python3 build/build_data.py build/raw/raw_all.json
 ```
 
@@ -39,6 +40,12 @@ python3 build/build_data.py build/raw/raw_all.json
 ```bash
 git add -A && git commit -m "Refresh catalog" && git push
 ```
+
+### דירות שלא פורסמו באתר ההזמנות
+`fetch_public.py` מביא רק דירות **שמפורסמות** באתר. דירה שנוספה ל-Hostfully ולא פורסמה לא תגיע דרכו.
+`fetch_unpublished.py` מוסיף אותן מרשימת UID בראש הקובץ — אבל רק נתוני ליבה ותמונת שער, כי הגלריה והתיאור חסומים עד הפרסום. הן מסומנות `dataPartial` ומוצגות כ"טרם דורגה".
+
+**כשנוספת דירה ל-Hostfully:** להוסיף את ה-UID שלה ל-`UIDS` בתוך `build/fetch_unpublished.py`. ברגע שהיא תפורסם באתר, למחוק אותה משם — `fetch_public.py` יביא אותה מלאה.
 
 **חשוב:** הקטלוג הוא צילום מצב — הוא **לא** מתעדכן לבד. אם החליפו תמונות או תיאורים ב-Hostfully, צריך להריץ את הרענון.
 
