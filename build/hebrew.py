@@ -12,6 +12,7 @@ BED_TYPES = [  # (regex on the lower-cased type, singular, plural)
     (r'(bunk double|couple bunk|double bunk) beds?', 'מיטת קומתיים זוגית', 'מיטות קומתיים זוגיות'),
     (r'(double sofa|sofa double) beds?', 'ספה נפתחת זוגית', 'ספות נפתחות זוגיות'),
     (r'sofa beds?', 'ספה נפתחת', 'ספות נפתחות'),
+    (r'single bunk beds?', 'מיטת קומתיים יחיד', 'מיטות קומתיים יחיד'),
     (r'bunk beds?', 'מיטת קומתיים', 'מיטות קומתיים'),
     (r'double beds?', 'מיטה זוגית', 'מיטות זוגיות'),
     (r'single beds?', 'מיטת יחיד', 'מיטות יחיד'),
@@ -51,6 +52,12 @@ def perfect_for(s):
     m = re.match(r'^Couple or (\d+) friends$', s, re.I)
     if m:
         return f'זוג או {m.group(1)} חברים'
+    m = re.match(r'^Family or (\d+)-(\d+) friends$', s, re.I)
+    if m:
+        return f'משפחה או {m.group(1)}–{m.group(2)} חברים'
+    m = re.match(r'^families? or groups? of up to (\d+) guests$', s, re.I)
+    if m:
+        return f'משפחות או קבוצות של עד {m.group(1)} אנשים'
     UNKNOWN.add(('perfectFor', s)); return s
 
 
@@ -73,12 +80,15 @@ def feature(s):
     m = re.match(r'^(\d+) comfortable beds?$', k)
     if m:
         return f'{m.group(1)} מיטות נוחות'
+    m = re.match(r'^accommodat(?:es|ion for) up to (\d+) guests?$', k)
+    if m:
+        return f'עד {m.group(1)} אורחים'
     UNKNOWN.add(('feature', s)); return s
 
 
 def extra(s):
     k = s.strip().strip('"').rstrip('.').lower()
-    if k.startswith('linen and towels available for'):
+    if ('linen' in k and 'towel' in k) or k.startswith('linen and towels available for'):
         m = re.search(r'€\s*(\d+)', s)
         return f'מצעים ומגבות: {m.group(1) if m else "?"}€ לאורח (אופציונלי)'
     if k == 'huge apartment!':
@@ -92,10 +102,24 @@ def headline(s):
     s = (s or '').strip()
     if not s:
         return ''
-    m = re.match(r'^Ski-in/Ski-out, (\d+)\s*-Bed Apartment in Val Thorens(?: \(up to (\d+) people\))?\.?$', s, re.I)
+    # older wording: "Ski-in/Ski-out, 5-Bed Apartment in Val Thorens (up to 5 people)."
+    m = re.match(r'^Ski-in/Ski-out, (\d+)\s*-Bed Apartment in Val Thorens(?: \(up to (\d+) (?:people|guests)\))?\.?$', s, re.I)
     if m:
         n, up = m.groups()
         out = f'דירת {n} מיטות בואל טורנס עם גישה ישירה למסלולים (Ski-in / Ski-out)'
+        if up:
+            out += f', עד {up} אנשים'
+        return out
+    # current wording: no bed count, optional size, optional capacity
+    m = re.match(r'^Ski-in/Ski-out,?\s*(?:(\d+)\s*m²\s*)?apartment in ([\w\s]+?)'
+                 r'(?:\s*\(up to (\d+) (?:people|guests)\))?\.?$', s, re.I)
+    if m:
+        size, place, up = m.groups()
+        place = {'val thorens': 'ואל טורנס', 'tignes': 'טין'}.get(place.strip().lower(), place.strip())
+        out = f'דירה ב{place}'
+        if size:
+            out = f'דירה של {size} מ״ר ב{place}'
+        out += ' עם גישה ישירה למסלולים (Ski-in / Ski-out)'
         if up:
             out += f', עד {up} אנשים'
         return out
@@ -139,6 +163,7 @@ WORDNUM = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6}
 
 PROSE_BEDS = [
     (r'fold-?down single beds?', 'מיטת יחיד מתקפלת', 'מיטות יחיד מתקפלות'),
+    (r'single bunk beds?', 'מיטת קומתיים יחיד', 'מיטות קומתיים יחיד'),
     (r'bunk beds?', 'מיטת קומתיים', 'מיטות קומתיים'),
     (r'sofa beds?', 'ספה נפתחת', 'ספות נפתחות'),
     (r'double beds?', 'מיטה זוגית', 'מיטות זוגיות'),

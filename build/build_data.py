@@ -105,7 +105,7 @@ def code_from(public_name, list_name):
 
 def parse_summary(summary):
     """Pull structured bits out of the free-text listing summary."""
-    text = (summary or '').replace('\r', '')
+    text = (summary or '').replace('\r', '').strip().strip('"').strip()
     out = {'headline': '', 'perfectFor': '', 'features': [], 'bedSpec': [], 'extras': []}
     lines = [l.strip() for l in text.split('\n')]
     section = 'body'
@@ -134,11 +134,46 @@ def parse_summary(summary):
     return out
 
 
+def size_from(desc, fallback=None):
+    for key in ('shortSummary', 'summary', 'name'):
+        m = re.search(r'(\d+(?:\.\d+)?)\s*m²', (desc.get(key) or ''))
+        if m:
+            return int(float(m.group(1)))
+    return fallback
+
+
 def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+PREV_SIZE = {}
+PREV_BEDSPEC = {}
+
+
+def load_previous():
+    """Last committed build, keyed by uid — fallback for fields the public API omits.
+
+    Read from git rather than the working file: a rebuild overwrites that file, so
+    re-running the build would otherwise erase its own fallback source.
+    """
+    try:
+        blob = subprocess.run(['git', '-C', ROOT, 'show', 'HEAD:data/apartments.json'],
+                              capture_output=True, text=True, check=True).stdout
+        prev = json.loads(blob)
+    except Exception:  # noqa: BLE001 - no repo, no commit yet, or unreadable
+        path = os.path.join(DATA_DIR, 'apartments.json')
+        if not os.path.exists(path):
+            return
+        prev = json.load(open(path, encoding='utf-8'))
+    for a in prev:
+        if a.get('sizeM2'):
+            PREV_SIZE[a['uid']] = a['sizeM2']
+        if a.get('bedSpec'):
+            PREV_BEDSPEC[a['uid']] = a['bedSpec']
+
+
 def normalize(raw):
+    load_previous()
     apartments = []
     for o in raw:
         p = o['property']
@@ -183,7 +218,7 @@ def normalize(raw):
             'address': addr.get('address'),
             'lat': addr.get('latitude'),
             'lng': addr.get('longitude'),
-            'sizeM2': (p.get('area') or {}).get('size'),
+            'sizeM2': (p.get('area') or {}).get('size') or size_from(d, PREV_SIZE.get(o['uid'])),
             'bedrooms': p.get('bedrooms'),
             'beds': p.get('beds'),
             'bathrooms': int(float(p.get('bathrooms') or 0)),
@@ -196,7 +231,7 @@ def normalize(raw):
             'headline': parsed['headline'],
             'perfectFor': parsed['perfectFor'],
             'features': parsed['features'],
-            'bedSpec': parsed['bedSpec'],
+            'bedSpec': parsed['bedSpec'] or PREV_BEDSPEC.get(o['uid'], []),
             'extras': parsed['extras'],
             'summary': (d.get('summary') or '').strip(),
             'amenities': amen_codes,
